@@ -24,18 +24,10 @@ const AdminNavbar = ({ onLogout }) => {
         <nav className="navbar-menu">
           <ul className={`navbar-links ${menuOpen ? "open" : ""}`}>
             <li>
-              <NavLink to="/" end>
-                Inicio
-              </NavLink>
+              <NavLink to="/">Inicio del Sitio</NavLink>
             </li>
             <li>
-              <NavLink to="/products">Tienda</NavLink>
-            </li>
-            <li>
-              <NavLink to="/cart">Carrito</NavLink>
-            </li>
-            <li>
-              <NavLink to="/manage-products">Administrar</NavLink>
+              <NavLink to="/manage-products">Administrar Productos</NavLink>
             </li>
             <li>
               <NavLink to="/admin">Dashboard</NavLink>
