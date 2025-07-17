@@ -1,7 +1,7 @@
 /* src/css/ProductDetails.css */
 .product-details {
   max-width: 800px;
-  margin: 2rem auto;
+  margin: 0 auto;
   padding: 1rem;
   font-family: Arial, sans-serif;
 }
