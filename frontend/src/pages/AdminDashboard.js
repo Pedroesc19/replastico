@@ -5,6 +5,7 @@ import "../css/AdminDashboard.css";
 
 const AdminDashboard = () => {
   const [orders, setOrders] = useState([]);
+  const [summary, setSummary] = useState({ users: 0, orders: 0, totalSales: 0 });
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
@@ -15,6 +16,11 @@ const AdminDashboard = () => {
       .then((res) => res.json())
       .then((data) => setOrders(data))
       .catch((err) => console.error("Error fetching orders:", err));
+
+    fetch("http://localhost:5000/api/admin/summary")
+      .then((res) => res.json())
+      .then((data) => setSummary(data))
+      .catch((err) => console.error("Error fetching summary:", err));
   }, [token]);
 
   const handleDownloadExcel = () => {
@@ -24,6 +30,20 @@ const AdminDashboard = () => {
   return (
     <div className="admin-dashboard">
       <h1>Dashboard de Administrador</h1>
+      <div className="summary-cards">
+        <div className="summary-card">
+          <h3>Usuarios</h3>
+          <p>{summary.users}</p>
+        </div>
+        <div className="summary-card">
+          <h3>Pedidos</h3>
+          <p>{summary.orders}</p>
+        </div>
+        <div className="summary-card">
+          <h3>Ventas</h3>
+          <p>${summary.totalSales}</p>
+        </div>
+      </div>
       <button onClick={handleDownloadExcel} className="download-button">
         Descargar Excel de Pedidos
       </button>

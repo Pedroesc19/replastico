@@ -25,6 +25,15 @@ ADMIN_EMAIL=<admin user email>
 JWT_SECRET=<jwt signing secret>
 ```
 
+After configuring the database connection you can create the default admin user
+by running:
+
+```bash
+cd backend
+node scripts/createAdmin.js
+```
+The credentials are `admin@gmail.com` with password `password`.
+
 ## Running the apps
 
 To start the backend API:
