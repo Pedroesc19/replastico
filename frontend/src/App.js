@@ -13,12 +13,13 @@ import CartPage from "./pages/CartPage";
 import CheckoutForm from "./pages/CheckoutForm"; // si existe
 import ProductDetails from "./pages/ProductDetails"; // si existe
 import ProtectedRoute from "./components/ProtectedRoute";
+import Layout from "./components/Layout";
 
 function App() {
   return (
     <Router>
       <Navbar />
-      <div style={{ padding: "1rem" }}>
+      <Layout>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
@@ -54,7 +55,7 @@ function App() {
           />
           {/* Agregar otras rutas protegidas según sea necesario */}
         </Routes>
-      </div>
+      </Layout>
     </Router>
   );
 }
