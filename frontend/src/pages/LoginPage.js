@@ -1,12 +1,22 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import "../css/LoginPage.css";
 import { AuthContext } from "../context/AuthContext";
+import "../css/LoginPage.css";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faEnvelope,
+  faLock,
+  faEye,
+  faEyeSlash,
+  faLeaf,
+} from "@fortawesome/free-solid-svg-icons";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
@@ -35,43 +45,71 @@ const LoginPage = () => {
   return (
     <div className="login-container">
       <div className="login-card">
-        <h2>Bienvenido a RePlastiCos</h2>
-        <p className="login-subtext">
-          Accede para gestionar tus pedidos de envases plásticos.
-        </p>
+        <div className="login-header">
+          <FontAwesomeIcon icon={faLeaf} className="login-leaf-icon" />
+          <h2>Bienvenido a RePlastiCos</h2>
+          <p className="login-subtext">
+            Accede para gestionar tus pedidos de envases plásticos.
+          </p>
+        </div>
+
         {error && <div className="error-message">{error}</div>}
+
         <form onSubmit={handleLogin}>
           <div className="form-group">
             <label htmlFor="email">Correo electrónico</label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="ejemplo@correo.com"
-              required
-            />
+            <div className="input-flex">
+              <FontAwesomeIcon icon={faEnvelope} className="flex-icon" />
+              <input
+                type="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="ejemplo@correo.com"
+                required
+              />
+            </div>
           </div>
-          <div className="form-group password-group">
+
+          <div className="form-group">
             <label htmlFor="password">Contraseña</label>
-            <input
-              type={showPassword ? "text" : "password"}
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Tu contraseña"
-              required
-            />
-            <span
-              className="toggle-password"
-              onClick={() => setShowPassword((prev) => !prev)}
-            >
-              {showPassword ? "Ocultar" : "Mostrar"}
-            </span>
+            <div className="input-flex">
+              <FontAwesomeIcon icon={faLock} className="flex-icon" />
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Tu contraseña"
+                required
+              />
+              <span
+                className="flex-icon clickable"
+                onClick={() => setShowPassword((prev) => !prev)}
+              >
+                <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+              </span>
+            </div>
           </div>
+
+          <div className="form-options">
+            <label className="remember-me">
+              <input
+                type="checkbox"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
+              />
+              Recuérdame
+            </label>
+            <a href="/forgot-password" className="forgot-link">
+              ¿Olvidaste tu contraseña?
+            </a>
+          </div>
+
           <button type="submit" className="login-button">
             Iniciar sesión
           </button>
+
           <div className="login-footer">
             ¿No tienes cuenta? <a href="/register">Regístrate</a>
           </div>

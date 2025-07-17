@@ -1,8 +1,7 @@
-
 body {
-  font-family: var(--font-main);
+  font-family: var(--font-main, "Segoe UI", sans-serif);
   margin: 0;
-  background-color: var(--gray-light);
+  background-color: #f0f9f3;
 }
 
 .register-page {
@@ -11,6 +10,7 @@ body {
   align-items: center;
   padding: 2rem;
   min-height: 100vh;
+  background: linear-gradient(135deg, #e9f5e9 0%, #f9fff9 100%);
 }
 
 .hero-banner {
@@ -20,27 +20,28 @@ body {
 
 .hero-banner h1 {
   font-size: 2rem;
-  color: var(--primary-green);
+  color: #4caf50;
   margin: 0;
 }
 
 .hero-banner p {
-  color: var(--gray-dark);
+  color: #444;
   margin-top: 0.5rem;
 }
 
 .register-card {
   background: #fff;
-  padding: 2rem;
+  padding: 2.5rem;
   border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 100, 0, 0.1);
   width: 100%;
   max-width: 420px;
+  border: 1px solid #d4f1d4;
 }
 
 .register-card h2 {
   margin-bottom: 1.5rem;
-  color: #333;
+  color: #2d602d;
   text-align: center;
 }
 
@@ -51,20 +52,23 @@ body {
 .form-group label {
   display: block;
   margin-bottom: 0.5rem;
-  color: var(--gray-dark);
+  color: #555;
+  font-weight: 500;
 }
 
 .form-group input {
   width: 100%;
-  padding: 0.8rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: 8px;
   font-size: 1rem;
+  background-color: #f4f6f8;
+  outline: none;
+  transition: box-shadow 0.2s ease;
 }
 
 .form-group input:focus {
-  border-color: var(--accent);
-  outline: none;
+  box-shadow: 0 0 0 2px #4caf5044;
 }
 
 .password-group {
@@ -73,24 +77,28 @@ body {
 
 .toggle-password {
   position: absolute;
-  right: 10px;
+  right: 12px;
   top: 38px;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   cursor: pointer;
-  color: var(--accent);
+  color: #4caf50;
+  font-weight: 500;
+  background-color: #f4f6f8;
+  padding: 0 4px;
 }
 
 .error-message {
-  color: var(--danger);
+  color: #c62828;
   background: #ffeaea;
-  padding: 0.5rem;
+  padding: 0.6rem;
   border-radius: 6px;
   text-align: center;
   margin-bottom: 1rem;
+  font-size: 0.95rem;
 }
 
 .register-button {
-  background-color: var(--primary-green);
+  background-color: #4caf50;
   color: white;
   padding: 0.9rem;
   width: 100%;
@@ -99,19 +107,24 @@ body {
   font-size: 1rem;
   transition: background-color 0.3s ease;
   margin-top: 0.5rem;
+  cursor: pointer;
 }
 
 .register-button:hover {
-  background-color: var(--primary-dark);
+  background-color: #388e3c;
 }
 
 .login-link {
   text-align: center;
-  margin-top: 1rem;
+  margin-top: 1.2rem;
   font-size: 0.9rem;
 }
 
 .login-link a {
-  color: var(--accent);
+  color: #4caf50;
   text-decoration: none;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
 }
