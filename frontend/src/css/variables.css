@@ -1,0 +1,24 @@
+:root {
+  --color-primary: #28a745;
+  --color-hover: #007bff;
+  --color-text: #333;
+  --color-border: #eaeaea;
+  --font-main: "Segoe UI", sans-serif;
+
+  --green-main: #28a745;
+  --green-dark: #218838;
+  --white: #fff;
+  --overlay-dark: rgba(0, 0, 0, 0.6);
+
+  --color-primary-hover: #218838;
+  --color-accent: #007bff;
+  --color-danger: #d9534f;
+  --color-bg: #f2f2f2;
+
+  --primary-green: #28a745;
+  --primary-dark: #218838;
+  --accent: #007bff;
+  --danger: #dc3545;
+  --gray-light: #f2f2f2;
+  --gray-dark: #555;
+}
