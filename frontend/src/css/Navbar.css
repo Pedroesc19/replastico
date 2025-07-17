@@ -73,9 +73,27 @@
 }
 
 /* Responsive (optional mobile nav later) */
+.navbar-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
 @media (max-width: 768px) {
+  .navbar-toggle {
+    display: block;
+  }
+
   .navbar-links {
-    display: none; /* or use a drawer/menu toggle */
+    display: none;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .navbar-links.open {
+    display: flex;
   }
 }
 

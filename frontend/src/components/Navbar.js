@@ -1,5 +1,5 @@
 // Navbar.js
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import "../css/Navbar.css";
@@ -7,6 +7,7 @@ import "../css/Navbar.css";
 const Navbar = () => {
   const { userInfo, logout } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleLogout = () => {
     logout();
@@ -20,8 +21,14 @@ const Navbar = () => {
           <img src="/logo.svg" alt="RePlastiCos" className="logo" />
           <span className="brand-text"></span>
         </Link>
+        <button
+          className="navbar-toggle"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          &#9776;
+        </button>
         <nav className="navbar-menu">
-          <ul className="navbar-links">
+          <ul className={`navbar-links ${menuOpen ? "open" : ""}`}>
             <li>
               <NavLink to="/" end>
                 Inicio
