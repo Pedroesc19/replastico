@@ -8,6 +8,21 @@
   color: #333;
 }
 
+.summary-cards {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.summary-card {
+  background-color: #f5f5f5;
+  padding: 1rem;
+  border-radius: 6px;
+  text-align: center;
+  min-width: 120px;
+}
+
 .download-button {
   display: block;
   margin: 0 auto 1.5rem;
