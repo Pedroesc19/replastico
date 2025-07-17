@@ -1,0 +1,126 @@
+:root {
+  --primary-green: #28a745;
+  --primary-dark: #218838;
+  --accent: #007bff;
+  --danger: #dc3545;
+  --gray-light: #f2f2f2;
+  --gray-dark: #555;
+  --font-main: "Segoe UI", sans-serif;
+}
+
+body {
+  font-family: var(--font-main);
+  margin: 0;
+  background-color: var(--gray-light);
+}
+
+.register-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+.hero-banner {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.hero-banner h1 {
+  font-size: 2rem;
+  color: var(--primary-green);
+  margin: 0;
+}
+
+.hero-banner p {
+  color: var(--gray-dark);
+  margin-top: 0.5rem;
+}
+
+.register-card {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 420px;
+}
+
+.register-card h2 {
+  margin-bottom: 1.5rem;
+  color: #333;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--gray-dark);
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.form-group input:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+
+.password-group {
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 38px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: var(--accent);
+}
+
+.error-message {
+  color: var(--danger);
+  background: #ffeaea;
+  padding: 0.5rem;
+  border-radius: 6px;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.register-button {
+  background-color: var(--primary-green);
+  color: white;
+  padding: 0.9rem;
+  width: 100%;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  margin-top: 0.5rem;
+}
+
+.register-button:hover {
+  background-color: var(--primary-dark);
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.login-link a {
+  color: var(--accent);
+  text-decoration: none;
+}

@@ -1,0 +1,74 @@
+:root {
+  --green-main: #28a745;
+  --green-dark: #218838;
+  --white: #fff;
+  --overlay-dark: rgba(0, 0, 0, 0.6);
+}
+
+.home-hero {
+  position: relative;
+  height: 100vh;
+  background: url("../imagenes/cajasdeplasticohome.jpg") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-overlay {
+  background: var(--overlay-dark);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-content {
+  text-align: center;
+  color: var(--white);
+  padding: 2rem;
+  max-width: 700px;
+}
+
+.home-content h1 {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.home-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #f0f0f0;
+}
+
+.home-cta {
+  padding: 0.9rem 2rem;
+  font-size: 1.1rem;
+  background-color: var(--green-main);
+  color: var(--white);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.home-cta:hover {
+  background-color: var(--green-dark);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .home-content h1 {
+    font-size: 2rem;
+  }
+
+  .home-content p {
+    font-size: 1rem;
+  }
+
+  .home-cta {
+    font-size: 1rem;
+    padding: 0.8rem 1.5rem;
+  }
+}
