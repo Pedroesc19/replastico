@@ -80,3 +80,9 @@
 .submit-button:hover {
   background-color: #218838;
 }
+
+.success-message {
+  margin-top: 1rem;
+  color: #28a745;
+  text-align: center;
+}

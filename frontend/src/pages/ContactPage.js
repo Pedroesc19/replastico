@@ -13,11 +13,12 @@ const ContactPage = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const [success, setSuccess] = useState(false);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // Aquí puedes implementar la lógica para enviar el mensaje al backend
-    console.log("Mensaje enviado:", formData);
-    alert("Mensaje enviado con éxito!");
+    setSuccess(true);
     setFormData({ name: "", email: "", message: "" });
   };
 
@@ -31,6 +32,9 @@ const ContactPage = () => {
       </p>
       <div className="contact-form-container">
         <h2>Envíanos un mensaje</h2>
+        {success && (
+          <p className="success-message">Mensaje enviado con éxito!</p>
+        )}
         <form onSubmit={handleSubmit} className="contact-form">
           <div className="form-group">
             <label htmlFor="name">Nombre:</label>
