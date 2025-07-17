@@ -7,6 +7,7 @@ import productRoutes from "./routes/productRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
+import quoteRoutes from "./routes/quoteRoutes.js";
 import fs from "fs";
 import path from "path";
 
@@ -28,6 +29,7 @@ app.use("/api/upload", uploadRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/orders", orderRoutes);
+app.use("/api/quotes", quoteRoutes);
 app.use("/uploads", express.static("uploads"));
 
 app.get("/", (req, res) => {
