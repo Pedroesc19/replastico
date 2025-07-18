@@ -3,6 +3,7 @@ import Order from "../models/Order.js";
 import Product from "../models/Product.js";
 import path from "path";
 import fs from "fs";
+import { saveOrderToExcel } from "../services/excelService.js";
 
 // Crea un pedido incluyendo información adicional (checkout)
 export const createOrder = async (req, res) => {
@@ -45,7 +46,7 @@ export const createOrder = async (req, res) => {
       status: "Pendiente",
     });
 
-    // Aquí podrías llamar a un servicio para almacenar la orden en un archivo Excel
+    saveOrderToExcel(order);
 
     return res.status(201).json(order);
   } catch (error) {
