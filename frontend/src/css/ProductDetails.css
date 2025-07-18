@@ -74,3 +74,39 @@
   background: #f9f9f9;
   border-radius: 6px;
 }
+
+.reviews-section {
+  margin-top: 2rem;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.reviews-section h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.review {
+  margin-bottom: 1rem;
+}
+
+.review-stars {
+  color: #ffc107;
+  margin-bottom: 0.5rem;
+}
+
+.review p {
+  margin: 0;
+  color: #555;
+  font-style: italic;
+}
+
+.review span {
+  display: block;
+  text-align: right;
+  color: #777;
+  font-size: 0.9rem;
+}

@@ -3,6 +3,8 @@ import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import "../css/ProductDetails.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -57,7 +59,27 @@ const ProductDetails = () => {
           <strong>Nota:</strong> La compra mínima para este producto es de 50
           unidades.
         </p>
-        {/* Puedes agregar más información, como reseñas, disponibilidad en stock, etc. */}
+      </div>
+      <div className="reviews-section">
+        <h2>Reseñas</h2>
+        <div className="review">
+          <div className="review-stars">
+            {[...Array(5)].map((_, i) => (
+              <FontAwesomeIcon key={i} icon={faStar} />
+            ))}
+          </div>
+          <p>"Excelente calidad y muy resistentes."</p>
+          <span>- Juan Pérez</span>
+        </div>
+        <div className="review">
+          <div className="review-stars">
+            {[...Array(4)].map((_, i) => (
+              <FontAwesomeIcon key={i} icon={faStar} />
+            ))}
+          </div>
+          <p>"Perfectas para transportar frutas sin dañarlas."</p>
+          <span>- María López</span>
+        </div>
       </div>
     </div>
   );
