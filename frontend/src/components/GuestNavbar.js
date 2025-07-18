@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import "../css/Navbar.css";
+import { CartContext } from "../context/CartContext";
 
 const GuestNavbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { cartItems } = useContext(CartContext);
 
   return (
     <header className="navbar">
@@ -29,7 +31,14 @@ const GuestNavbar = () => {
               <NavLink to="/products">Tienda</NavLink>
             </li>
             <li>
-              <NavLink to="/cart">Carrito</NavLink>
+              <NavLink to="/cart">
+                <span className="cart-link-content">
+                  Carrito
+                  {cartItems.length > 0 && (
+                    <span className="cart-badge">{cartItems.length}</span>
+                  )}
+                </span>
+              </NavLink>
             </li>
             <li>
               <NavLink to="/contact">Contacto</NavLink>

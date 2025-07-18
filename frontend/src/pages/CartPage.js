@@ -17,29 +17,6 @@ const CartPage = () => {
     navigate("/checkout");
   };
 
-  const handleGenerateQuote = () => {
-    fetch("http://localhost:5000/api/quotes", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        products: cartItems.map((item) => ({
-          product: item.product._id,
-          quantity: item.quantity,
-        })),
-      }),
-    })
-      .then((res) => res.blob())
-      .then((blob) => {
-        const url = window.URL.createObjectURL(blob);
-        const link = document.createElement("a");
-        link.href = url;
-        link.setAttribute("download", "cotizacion.pdf");
-        document.body.appendChild(link);
-        link.click();
-        link.parentNode.removeChild(link);
-      })
-      .catch((err) => console.error("Error generating quote:", err));
-  };
 
   return (
     <div className="cart-page">
@@ -67,9 +44,6 @@ const CartPage = () => {
           </div>
           <div className="cart-summary">
             <h2>Total: ${totalPrice}</h2>
-            <button className="quote-button" onClick={handleGenerateQuote}>
-              Generar Cotización
-            </button>
             <button className="checkout-button" onClick={handleCheckout}>
               Proceder a Pagar
             </button>
