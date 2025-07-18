@@ -12,6 +12,7 @@ import RegisterPage from "./pages/RegisterPage";
 import CartPage from "./pages/CartPage";
 import CheckoutForm from "./pages/CheckoutForm"; // si existe
 import ProductDetails from "./pages/ProductDetails"; // si existe
+import ConfirmationPage from "./pages/ConfirmationPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Layout from "./components/Layout";
 
@@ -53,6 +54,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route path="/confirmation" element={<ConfirmationPage />} />
           {/* Agregar otras rutas protegidas según sea necesario */}
         </Routes>
       </Layout>
