@@ -4,6 +4,17 @@
   font-family: var(--font-main, "Segoe UI", sans-serif);
   background: linear-gradient(135deg, #e9f5e9 0%, #f9fff9 100%);
   min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.products-container {
+  max-width: 1200px;
+  width: 100%;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 100, 0, 0.1);
 }
 
 .products-page h1 {
@@ -83,4 +94,11 @@
   align-items: center;
   justify-content: center;
   color: #777;
+}
+
+.no-products {
+  text-align: center;
+  color: #777;
+  font-size: 1.2rem;
+  margin-top: 2rem;
 }

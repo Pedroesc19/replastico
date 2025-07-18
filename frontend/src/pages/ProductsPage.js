@@ -17,34 +17,36 @@ const ProductsPage = () => {
 
   return (
     <div className="products-page">
-      <h1>Productos</h1>
-      {products.length > 0 ? (
-        <div className="products-grid">
-          {products.map((product) => (
-            <div key={product._id} className="product-card">
-              <Link to={`/product/${product._id}`}>
-                {product.imageUrl ? (
-                  <img
-                    src={product.imageUrl}
-                    alt={product.name}
-                    className="product-image"
-                  />
-                ) : (
-                  <div className="no-image">Sin imagen</div>
-                )}
-                <h3>{product.name}</h3>
-              </Link>
-              <p>{product.description.substring(0, 50)}...</p>
-              <strong>${product.price}</strong>
-              <button onClick={() => addToCart(product)}>
-                Añadir al carrito
-              </button>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <p className="no-products">No hay productos disponibles.</p>
-      )}
+      <div className="products-container">
+        <h1>Productos</h1>
+        {products.length > 0 ? (
+          <div className="products-grid">
+            {products.map((product) => (
+              <div key={product._id} className="product-card">
+                <Link to={`/product/${product._id}`}>
+                  {product.imageUrl ? (
+                    <img
+                      src={product.imageUrl}
+                      alt={product.name}
+                      className="product-image"
+                    />
+                  ) : (
+                    <div className="no-image">Sin imagen</div>
+                  )}
+                  <h3>{product.name}</h3>
+                </Link>
+                <p>{product.description.substring(0, 50)}...</p>
+                <strong>${product.price}</strong>
+                <button onClick={() => addToCart(product)}>
+                  Añadir al carrito
+                </button>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p className="no-products">No hay productos disponibles.</p>
+        )}
+      </div>
     </div>
   );
 };
