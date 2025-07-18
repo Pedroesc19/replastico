@@ -18,14 +18,14 @@ const AdminNavbar = ({ onLogout }) => {
           <img src="/logo.svg" alt="RePlastiCos" className="logo" />
           <span className="brand-text"></span>
         </Link>
-        <button className="navbar-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+        <button
+          className="navbar-toggle"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
           &#9776;
         </button>
         <nav className="navbar-menu">
           <ul className={`navbar-links ${menuOpen ? "open" : ""}`}>
-            <li>
-              <NavLink to="/">Inicio del Sitio</NavLink>
-            </li>
             <li>
               <NavLink to="/manage-products">Administrar Productos</NavLink>
             </li>
