@@ -3,8 +3,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import "../css/ProductDetails.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import Icon from "../icons/Icon";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -65,7 +64,7 @@ const ProductDetails = () => {
         <div className="review">
           <div className="review-stars">
             {[...Array(5)].map((_, i) => (
-              <FontAwesomeIcon key={i} icon={faStar} />
+              <Icon key={i} name="star" />
             ))}
           </div>
           <p>"Excelente calidad y muy resistentes."</p>
@@ -74,7 +73,7 @@ const ProductDetails = () => {
         <div className="review">
           <div className="review-stars">
             {[...Array(4)].map((_, i) => (
-              <FontAwesomeIcon key={i} icon={faStar} />
+              <Icon key={i} name="star" />
             ))}
           </div>
           <p>"Perfectas para transportar frutas sin dañarlas."</p>
