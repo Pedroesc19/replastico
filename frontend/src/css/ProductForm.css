@@ -1,7 +1,9 @@
+@import "../design/tokens.css";
+
 .product-form-container {
   max-width: 600px;
-  margin: 2rem auto;
-  padding: 1.5rem;
+  margin: var(--space-6) auto;
+  padding: var(--space-5);
   background-color: var(--color-gray-100);
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -13,23 +15,23 @@
 }
 
 .form-group {
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-4);
   display: flex;
   flex-direction: column;
 }
 
 .form-group label {
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--space-2);
   font-weight: bold;
   color: var(--color-text);
 }
 
 .form-group input,
 .form-group textarea {
-  padding: 0.75rem;
+  padding: var(--space-3);
   border: 1px solid var(--color-gray-600);
   border-radius: 4px;
-  font-size: 1rem;
+  font-size: var(--font-size-md);
 }
 
 .form-group input:focus,
@@ -39,15 +41,15 @@
 }
 
 .submit-button {
-  padding: 0.75rem;
+  padding: var(--space-3);
   background-color: var(--color-primary);
   color: var(--color-surface);
   border: none;
   border-radius: 4px;
-  font-size: 1rem;
+  font-size: var(--font-size-md);
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-top: 1rem;
+  margin-top: var(--space-4);
 }
 
 .submit-button:hover {
@@ -55,9 +57,9 @@
 }
 
 .product-description {
-  white-space: pre-wrap;
-  font-size: 1.1rem;
+  var(--color-surface)-space: pre-wrap;
+  font-size: var(--font-size-md);
   line-height: 1.6;
   color: var(--color-text-light);
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-4);
 }

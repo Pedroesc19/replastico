@@ -1,8 +1,10 @@
+@import "../design/tokens.css";
+
 .confirmation-page {
   max-width: 600px;
   margin: 0 auto;
   text-align: center;
-  padding: 2rem;
+  padding: var(--space-6);
   background: linear-gradient(135deg, var(--color-background-light) 0%, var(--color-background-lighter) 100%);
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0, 100, 0, 0.1);
@@ -10,24 +12,24 @@
 }
 
 .confirmation-page h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+  font-size: calc(var(--font-size-xl) * 1.333);
+  margin-bottom: var(--space-4);
   color: var(--color-text);
 }
 
 .confirmation-page p {
-  font-size: 1.1rem;
+  font-size: var(--font-size-md);
   color: var(--color-text-light);
-  margin-bottom: 2rem;
+  margin-bottom: var(--space-6);
 }
 
 .btn-back-home {
   background-color: var(--color-primary);
   color: var(--color-surface);
-  padding: 0.8rem 1.5rem;
+  padding: var(--space-3) var(--space-5);
   border: none;
   border-radius: 6px;
-  font-size: 1rem;
+  font-size: var(--font-size-md);
   cursor: pointer;
 }
 
