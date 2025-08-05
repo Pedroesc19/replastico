@@ -4,6 +4,10 @@ import "../css/HomePage.css";
 import { Button } from "../components/ui";
 import Icon from "../icons/Icon";
 import HeroCarousel from "../components/HeroCarousel";
+import TopProducts from "../components/TopProducts";
+import StatsSection from "../components/StatsSection";
+import TestimonialsCarousel from "../components/TestimonialsCarousel";
+import PromoVideoSection from "../components/PromoVideoSection";
 
 const slides = [
   {
@@ -90,67 +94,27 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="preview-section">
-        <h2>Nuestros Productos</h2>
-        <p>
-          Explora nuestras soluciones plásticas para cada etapa del transporte
-          agrícola.
-        </p>
-        <div className="preview-gallery">
-          <div className="preview-item">
-            <picture>
-              <source
-                srcSet="/imagenes/caja-estandar.jpg"
-                media="(min-width: 769px)"
-              />
-              <img
-                src="/imagenes/caja-estandar.jpg"
-                alt="Caja estándar"
-                loading="lazy"
-              />
-            </picture>
-            <p>Caja estándar</p>
-          </div>
-          <div className="preview-item">
-            <picture>
-              <source
-                srcSet="/imagenes/caja-ventilada.jpg"
-                media="(min-width: 769px)"
-              />
-              <img
-                src="/imagenes/caja-ventilada.jpg"
-                alt="Caja ventilada"
-                loading="lazy"
-              />
-            </picture>
-            <p>Caja ventilada</p>
-          </div>
-          <div className="preview-item">
-            <picture>
-              <source
-                srcSet="/imagenes/caja-apilable.jpg"
-                media="(min-width: 769px)"
-              />
-              <img
-                src="/imagenes/caja-apilable.jpg"
-                alt="Caja apilable"
-                loading="lazy"
-              />
-            </picture>
-            <p>Caja apilable</p>
-          </div>
-        </div>
-        <Button className="home-cta" onClick={() => navigate("/products")}>
-          Ver catálogo completo
-        </Button>
-      </section>
+      <TopProducts />
 
       <section className="impact-section">
         <h2>Comprometidos con el medio ambiente</h2>
         <p>
-          Cada caja reutilizable evita el uso de cientos de cajas de cartón al
-          año. Con RePlastiCos, tú también puedes hacer la diferencia.
+          Cada caja reutilizable evita el uso de cientos de cajas de cartón al año. Con RePlastiCos, tú también puedes hacer la diferencia.
         </p>
+      </section>
+
+      <StatsSection />
+
+      <PromoVideoSection />
+
+      <TestimonialsCarousel />
+
+      <section className="newsletter-section">
+        <h2>Suscríbete a nuestro boletín</h2>
+        <form className="newsletter-form">
+          <input type="email" placeholder="Tu correo" required />
+          <Button type="submit">Suscribirse</Button>
+        </form>
       </section>
 
       <section className="cta-final">
@@ -160,6 +124,15 @@ const HomePage = () => {
           Crear cuenta
         </Button>
       </section>
+
+      <a
+        href="https://wa.me/123456789"
+        className="floating-contact"
+        target="_blank"
+        rel="noreferrer"
+      >
+        WhatsApp
+      </a>
     </div>
   );
 };
