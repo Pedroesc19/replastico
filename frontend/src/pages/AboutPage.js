@@ -3,7 +3,7 @@ import "../css/AboutPage.css";
 
 const AboutPage = () => {
   return (
-    <section className="about-container">
+    <section className="about-container grid cols-1">
       <div className="about-content">
         <h1 className="about-title">Sobre RePlastiCos</h1>
 

@@ -7,9 +7,8 @@ body {
 }
 
 .login-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
   height: 100vh;
   padding: var(--space-4);
   background: linear-gradient(135deg, var(--color-background-light) 0%, var(--color-background-lighter) 100%);

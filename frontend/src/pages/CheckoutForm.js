@@ -67,7 +67,7 @@ const CheckoutForm = () => {
   };
 
   return (
-    <div className="checkout-form-container">
+    <div className="checkout-form-container grid cols-1">
       <h1>Formulario de Pago</h1>
       <Card className="order-summary">
         <h2>Resumen del Pedido</h2>

@@ -1,7 +1,12 @@
 @import "../design/tokens.css";
+@import "../design/layout.css";
 
 .layout-container {
   max-width: 1200px;
   margin: var(--space-6) auto;
   padding: var(--space-4);
+}
+
+.layout-container > * {
+  grid-column: 1 / -1;
 }

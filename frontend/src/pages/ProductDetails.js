@@ -31,7 +31,7 @@ const ProductDetails = () => {
   if (!product) return <p>Cargando producto...</p>;
 
   return (
-    <div className="product-details">
+    <div className="product-details grid cols-1">
       <h1>{product.name}</h1>
       <div className="product-images">
         {product.imageUrl ? (

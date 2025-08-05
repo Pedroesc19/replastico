@@ -24,7 +24,7 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="contact-page">
+    <div className="contact-page grid cols-1">
       <h1>Contacto</h1>
       <p>
         Si deseas más información, contáctanos a través del correo:{" "}

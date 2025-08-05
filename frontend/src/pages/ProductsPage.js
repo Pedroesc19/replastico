@@ -17,7 +17,7 @@ const ProductsPage = () => {
   }, []);
 
   return (
-    <div className="products-page">
+    <div className="products-page grid cols-1">
       <div className="products-container">
         <h1>Productos</h1>
         {products.length > 0 ? (
