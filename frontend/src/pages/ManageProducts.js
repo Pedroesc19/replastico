@@ -35,7 +35,7 @@ const ManageProducts = () => {
   };
 
   return (
-    <div className="manage-products">
+    <div className="manage-products grid cols-1">
       <h1>Administrar Productos</h1>
       <CardGrid className="products-list">
         {products.map((product) => (

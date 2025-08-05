@@ -18,7 +18,7 @@ const ConfirmationPage = () => {
   };
 
   return (
-    <div className="confirmation-page">
+    <div className="confirmation-page grid cols-1">
       {isSuccess ? (
         <>
           <h1>¡Pedido Exitoso!</h1>

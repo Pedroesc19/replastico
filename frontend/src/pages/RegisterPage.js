@@ -31,7 +31,7 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="register-page">
+    <div className="register-page grid cols-1">
       <div className="hero-banner">
         <h1>Replasticos</h1>
         <p>Regístrate para gestionar tus pedidos de contenedores plásticos.</p>

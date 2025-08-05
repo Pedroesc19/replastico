@@ -29,7 +29,7 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="admin-dashboard">
+    <div className="admin-dashboard grid cols-1">
       <h1>Dashboard de Administrador</h1>
       <div className="summary-cards">
         <div className="summary-card">

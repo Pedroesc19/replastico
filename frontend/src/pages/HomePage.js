@@ -7,7 +7,7 @@ const HomePage = () => {
   const navigate = useNavigate();
 
   return (
-    <>
+    <div className="home-page grid cols-1">
       <section className="home-hero">
         <div className="home-overlay">
           <div className="home-content">
@@ -84,7 +84,7 @@ const HomePage = () => {
           Crear cuenta
         </Button>
       </section>
-    </>
+    </div>
   );
 };
 

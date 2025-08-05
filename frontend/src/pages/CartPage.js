@@ -20,7 +20,7 @@ const CartPage = () => {
 
 
   return (
-    <div className="cart-page">
+    <div className="cart-page grid cols-1">
       <h1 className="cart-title">Carrito de Compras</h1>
       {cartItems.length === 0 ? (
         <p className="empty-cart">El carrito está vacío.</p>

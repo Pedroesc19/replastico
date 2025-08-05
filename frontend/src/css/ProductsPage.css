@@ -6,8 +6,8 @@
   font-family: var(--font-family-base);
   background: linear-gradient(135deg, var(--color-background-light) 0%, var(--color-background-lighter) 100%);
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
+  display: grid;
+  place-items: center;
 }
 
 .products-container {

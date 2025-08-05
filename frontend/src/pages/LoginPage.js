@@ -36,7 +36,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="login-container">
+    <div className="login-container grid cols-1">
       <Card className="login-card">
         <div className="login-header">
           <Icon name="leaf" className="login-leaf-icon" />
