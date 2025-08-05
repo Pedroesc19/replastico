@@ -3,13 +3,34 @@
   --color-primary: #28a745;
   --color-primary-dark: #218838;
   --color-secondary: #007bff;
-  --color-secondary-dark: #0069d9;
-  --color-danger: #dc3545;
-  --color-danger-dark: #c82333;
+  --color-secondary-dark: #0056b3;
+  --color-danger: #d9534f;
+  --color-danger-dark: #c9302c;
+  --color-danger-darker: #c62828;
+  --color-danger-light: #ffeaea;
+  --color-warning: #ffc107;
   --color-surface: #ffffff;
   --color-background: #f2f2f2;
+  --color-background-light: #e9f5e9;
+  --color-background-lighter: #f9fff9;
   --color-text: #333333;
+  --color-text-secondary: #444444;
+  --color-text-light: #555555;
+  --color-text-lighter: #777777;
   --color-border: #eaeaea;
+  --color-border-light: #d4f1d4;
+  --color-gray-100: #f9f9f9;
+  --color-gray-200: #f5f5f5;
+  --color-gray-300: #f4f6f8;
+  --color-gray-400: #f0f0f0;
+  --color-gray-500: #e0e0e0;
+  --color-gray-600: #dddddd;
+  --color-gray-700: #cccccc;
+  --color-gray-800: #eeeeee;
+  --color-overlay-dark: rgba(0, 0, 0, 0.55);
+  --color-success: #4caf50;
+  --color-success-dark: #388e3c;
+  --color-success-alpha: #4caf5044;
 
   /* Spacing */
   --space-1: 0.25rem;
