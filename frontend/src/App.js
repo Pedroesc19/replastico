@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/RoleNavbar";
 import HomePage from "./pages/HomePage";
-import AboutPage from "./pages/AboutPage";
+import AboutUs from "./pages/AboutUs";
 import ProductsPage from "./pages/ProductsPage";
 import ManageProducts from "./pages/ManageProducts";
 import AdminDashboard from "./pages/AdminDashboard";
@@ -25,7 +25,7 @@ function App() {
         <PageTransition>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<AboutPage />} />
+            <Route path="/about" element={<AboutUs />} />
             <Route path="/products" element={<ProductsPage />} />
             <Route path="/product/:id" element={<ProductDetails />} />
             <Route
