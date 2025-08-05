@@ -1,7 +1,9 @@
+@import "../design/tokens.css";
+
 .checkout-form-container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: var(--space-6);
   background: linear-gradient(135deg, var(--color-background-light) 0%, var(--color-background-lighter) 100%);
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0, 100, 0, 0.1);
@@ -11,14 +13,14 @@
 .checkout-form-container h1 {
   text-align: center;
   color: var(--color-text);
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--space-5);
 }
 
 .order-summary {
   background-color: var(--color-gray-100);
   border-radius: 6px;
-  padding: 1rem;
-  margin-bottom: 2rem;
+  padding: var(--space-4);
+  margin-bottom: var(--space-6);
 }
 
 .order-summary h2 {
@@ -32,27 +34,27 @@
 }
 
 .order-summary li {
-  padding: 0.5rem 0;
+  padding: var(--space-2) 0;
   border-bottom: 1px solid var(--color-gray-800);
 }
 
 .checkout-form .form-group {
-  margin-bottom: 1.2rem;
+  margin-bottom: var(--space-5);
 }
 
 .checkout-form label {
   display: block;
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--space-2);
   color: var(--color-text-light);
 }
 
 .checkout-form input,
 .checkout-form textarea {
   width: 100%;
-  padding: 0.8rem;
+  padding: var(--space-3);
   border: 1px solid var(--color-gray-600);
   border-radius: 4px;
-  font-size: 1rem;
+  font-size: var(--font-size-md);
 }
 
 .checkout-form input:focus,
@@ -64,10 +66,10 @@
 .submit-button {
   background-color: var(--color-primary);
   color: var(--color-surface);
-  padding: 0.9rem 1.5rem;
+  padding: var(--space-3) var(--space-5);
   border: none;
   border-radius: 6px;
-  font-size: 1rem;
+  font-size: var(--font-size-md);
   cursor: pointer;
   width: 100%;
   transition: background-color 0.3s ease;
@@ -80,5 +82,5 @@
 .error {
   color: var(--color-danger);
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-4);
 }

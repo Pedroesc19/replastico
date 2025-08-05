@@ -1,5 +1,7 @@
+@import "../design/tokens.css";
+
 .layout-container {
   max-width: 1200px;
-  margin: 2rem auto;
-  padding: 1rem;
+  margin: var(--space-6) auto;
+  padding: var(--space-4);
 }

@@ -1,3 +1,5 @@
+@import "../design/tokens.css";
+
 body {
   font-family: var(--font-family-base);
   background-color: var(--color-background-light);
@@ -9,13 +11,13 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  padding: 1rem;
+  padding: var(--space-4);
   background: linear-gradient(135deg, var(--color-background-light) 0%, var(--color-background-lighter) 100%);
 }
 
 .login-card {
   background: var(--color-surface);
-  padding: 2.5rem;
+  padding: calc(var(--space-6) + var(--space-2));
   border-radius: 16px;
   width: 100%;
   max-width: 400px;
@@ -25,30 +27,30 @@ body {
 }
 
 .login-header h2 {
-  margin-bottom: 0.3rem;
+  margin-bottom: var(--space-1);
   color: var(--color-success-dark);
 }
 
 .login-subtext {
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--space-5);
   color: var(--color-text-secondary);
-  font-size: 0.95rem;
+  font-size: var(--font-size-md);
 }
 
 .login-leaf-icon {
-  font-size: 2.2rem;
+  font-size: calc(var(--font-size-xl) * 1.467);
   color: var(--color-success);
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--space-2);
 }
 
 .form-group {
-  margin-bottom: 1.2rem;
+  margin-bottom: var(--space-5);
   text-align: left;
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--space-2);
   color: var(--color-text-light);
   font-weight: 500;
 }
@@ -58,9 +60,9 @@ body {
   display: flex;
   align-items: center;
   border-radius: 8px;
-  padding: 0.8rem 1rem;
+  padding: var(--space-3) var(--space-4);
   background-color: var(--color-gray-300); /* Light grey fill */
-  gap: 0.6rem;
+  gap: var(--space-2);
   transition: box-shadow 0.2s ease;
 }
 
@@ -72,7 +74,7 @@ body {
   border: none;
   flex: 1;
   padding: 0;
-  font-size: 1rem;
+  font-size: var(--font-size-md);
   background: transparent;
   outline: none;
   color: var(--color-text);
@@ -80,7 +82,7 @@ body {
 
 .flex-icon {
   color: var(--color-success);
-  font-size: 1.1rem;
+  font-size: var(--font-size-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -88,7 +90,7 @@ body {
 
 .flex-icon.clickable {
   cursor: pointer;
-  margin-left: 0.5rem;
+  margin-left: var(--space-2);
 }
 
 /* Form Options Row (remember me + forgot) */
@@ -96,12 +98,12 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 0.85rem;
-  margin-bottom: 1rem;
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--space-4);
 }
 
 .remember-me input {
-  margin-right: 6px;
+  margin-right: var(--space-2);
 }
 
 .forgot-link {
@@ -117,25 +119,25 @@ body {
 .error-message {
   color: var(--color-danger-darker);
   background: var(--color-danger-light);
-  padding: 0.6rem;
-  margin-bottom: 1rem;
+  padding: var(--space-2);
+  margin-bottom: var(--space-4);
   border-radius: 6px;
   text-align: left;
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
 }
 
 /* Submit Button */
 .login-button {
   width: 100%;
-  padding: 0.9rem;
+  padding: var(--space-3);
   background-color: var(--color-success);
-  color: white;
+  color: var(--color-surface);
   border: none;
   border-radius: 6px;
-  font-size: 1rem;
+  font-size: var(--font-size-md);
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-top: 0.5rem;
+  margin-top: var(--space-2);
 }
 
 .login-button:hover {
@@ -143,8 +145,8 @@ body {
 }
 
 .login-footer {
-  margin-top: 1rem;
-  font-size: 0.9rem;
+  margin-top: var(--space-4);
+  font-size: var(--font-size-sm);
 }
 
 .login-footer a {
