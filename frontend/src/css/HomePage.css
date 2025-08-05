@@ -1,12 +1,30 @@
 @import "../design/tokens.css";
 
-.home-hero {
+.hero-carousel {
   position: relative;
   height: 100vh;
-  background: url("../imagenes/cajasdeplasticohome.jpg") center/cover no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity var(--motion-slow) var(--motion-ease);
+}
+
+.hero-slide.active {
+  opacity: 1;
+}
+
+.hero-slide picture,
+.hero-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .home-overlay {
@@ -23,6 +41,18 @@
   color: var(--color-surface);
   padding: var(--space-6);
   max-width: 700px;
+}
+
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--motion-medium) var(--motion-ease),
+    transform var(--motion-medium) var(--motion-ease);
+}
+
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .home-content h1 {
@@ -88,6 +118,13 @@
 }
 
 .feature-card h3 {
+  color: var(--color-success);
+  margin-bottom: var(--space-2);
+}
+
+.feature-icon {
+  width: 40px;
+  height: 40px;
   color: var(--color-success);
   margin-bottom: var(--space-2);
 }
@@ -195,7 +232,11 @@
 /* ---------------------
    Responsive Adjustments
 ---------------------- */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
+  .hero-carousel {
+    height: 60vh;
+  }
+
   .home-content h1 {
     font-size: calc(var(--font-size-xl) * 1.333);
   }
@@ -218,5 +259,22 @@
   .feature-card,
   .preview-item {
     width: 90%;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 1024px) {
+  .hero-carousel {
+    height: 80vh;
+  }
+
+  .features,
+  .preview-gallery {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .feature-card,
+  .preview-item {
+    width: 45%;
   }
 }
