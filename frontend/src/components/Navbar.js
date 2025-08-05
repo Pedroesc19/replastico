@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useId } from "react";
+import React, { useState, useEffect, useId, useRef } from "react";
 import PropTypes from "prop-types";
 import { Link, NavLink } from "react-router-dom";
 import "../css/Navbar.css";
@@ -7,16 +7,59 @@ import { Bars3Icon } from "@heroicons/react/24/solid";
 const Navbar = ({ menuItems, showCart = false, cartCount = 0, onLogout }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuId = useId();
+  const navRef = useRef(null);
+  const toggleRef = useRef(null);
+  const firstItemRef = useRef(null);
+  const menuRef = useRef(null);
+  const initialRender = useRef(true);
 
   useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (navRef.current && !navRef.current.contains(e.target)) {
+        setMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!menuOpen) {
+      if (!initialRender.current) {
+        toggleRef.current?.focus();
+      }
+      return;
+    }
+    initialRender.current = false;
+    firstItemRef.current?.focus();
+
     const handleKeyDown = (e) => {
       if (e.key === "Escape") {
         setMenuOpen(false);
+        return;
+      }
+      if (e.key === "Tab" && menuRef.current) {
+        const focusable = menuRef.current.querySelectorAll("a, button");
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey) {
+          if (document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          }
+        } else if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
       }
     };
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  }, [menuOpen]);
 
   const handleLinkClick = () => setMenuOpen(false);
 
@@ -27,14 +70,17 @@ const Navbar = ({ menuItems, showCart = false, cartCount = 0, onLogout }) => {
     handleLinkClick();
   };
 
+  const cartLabel = `Cart${cartCount > 0 ? `, ${cartCount} item${cartCount > 1 ? "s" : ""}` : ""}`;
+
   return (
-    <header className="navbar">
+    <header className="navbar" ref={navRef}>
       <div className="navbar-container">
         <Link className="navbar-brand" to="/" onClick={handleLinkClick}>
           <img src="/logo.svg" alt="RePlastiCos" className="logo" />
-          <span className="brand-text"></span>
+          <span className="brand-text">RePlastiCos</span>
         </Link>
         <button
+          ref={toggleRef}
           className="navbar-toggle"
           aria-label="Toggle navigation"
           aria-controls={menuId}
@@ -46,13 +92,18 @@ const Navbar = ({ menuItems, showCart = false, cartCount = 0, onLogout }) => {
           </span>
         </button>
         <nav className="navbar-menu">
-          <ul id={menuId} className={`navbar-links ${menuOpen ? "open" : ""}`}>
-            {menuItems.map((item) => (
+          <ul
+            id={menuId}
+            ref={menuRef}
+            className={`navbar-links ${menuOpen ? "open" : ""}`}
+          >
+            {menuItems.map((item, index) => (
               <li key={item.to}>
                 <NavLink
                   to={item.to}
                   end={item.end}
                   onClick={handleLinkClick}
+                  ref={index === 0 ? firstItemRef : null}
                 >
                   {item.label}
                 </NavLink>
@@ -60,12 +111,19 @@ const Navbar = ({ menuItems, showCart = false, cartCount = 0, onLogout }) => {
             ))}
             {showCart && (
               <li>
-                <NavLink to="/cart" onClick={handleLinkClick}>
+                <NavLink
+                  to="/cart"
+                  onClick={handleLinkClick}
+                  aria-label={cartLabel}
+                >
                   <span className="cart-link-content">
                     Carrito
                     {cartCount > 0 && (
                       <span className="cart-badge">{cartCount}</span>
                     )}
+                    <span className="sr-only" aria-live="polite">
+                      {`Cart, ${cartCount} item${cartCount === 1 ? "" : "s"}`}
+                    </span>
                   </span>
                 </NavLink>
               </li>
