@@ -75,8 +75,12 @@ body {
   padding: 0;
   font-size: var(--font-size-md);
   background: transparent;
-  outline: none;
   color: var(--color-text);
+}
+
+.input-flex input:focus-visible {
+  outline: 3px solid var(--color-focus-outline);
+  outline-offset: 2px;
 }
 
 .flex-icon {

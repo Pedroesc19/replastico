@@ -52,6 +52,11 @@
   transition: color 0.2s ease;
 }
 
+.navbar-links li a:focus-visible {
+  outline: 3px solid var(--color-focus-outline);
+  outline-offset: 2px;
+}
+
 .navbar-links li a:hover,
 .navbar-links li a.active {
   color: var(--color-background-lighter);
@@ -75,6 +80,11 @@
   border: none;
   font-size: var(--font-size-xl);
   cursor: pointer;
+}
+
+.navbar-toggle:focus-visible {
+  outline: 3px solid var(--color-focus-outline);
+  outline-offset: 2px;
 }
 
 @media (max-width: 768px) {

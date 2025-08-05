@@ -57,10 +57,11 @@
   font-size: var(--font-size-md);
 }
 
-.checkout-form input:focus,
-.checkout-form textarea:focus {
+.checkout-form input:focus-visible,
+.checkout-form textarea:focus-visible {
   border-color: var(--color-secondary);
-  outline: none;
+  outline: 3px solid var(--color-focus-outline);
+  outline-offset: 2px;
 }
 
 .submit-button {
