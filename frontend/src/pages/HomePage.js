@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/HomePage.css";
+import { Button } from "../components/ui";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -16,9 +17,9 @@ const HomePage = () => {
               verduras, ayudando a productores y empresas a reducir su huella
               ambiental.
             </p>
-            <button className="home-cta" onClick={() => navigate("/products")}>
+            <Button className="home-cta" onClick={() => navigate("/products") }>
               Ver Productos
-            </button>
+            </Button>
           </div>
         </div>
       </section>
@@ -63,9 +64,9 @@ const HomePage = () => {
             <p>Caja apilable</p>
           </div>
         </div>
-        <button className="home-cta" onClick={() => navigate("/products")}>
+        <Button className="home-cta" onClick={() => navigate("/products") }>
           Ver catálogo completo
-        </button>
+        </Button>
       </section>
 
       <section className="impact-section">
@@ -79,9 +80,9 @@ const HomePage = () => {
       <section className="cta-final">
         <h2>Únete al cambio</h2>
         <p>Regístrate ahora y comienza a transformar tu logística.</p>
-        <button className="home-cta" onClick={() => navigate("/register")}>
+        <Button className="home-cta" onClick={() => navigate("/register") }>
           Crear cuenta
-        </button>
+        </Button>
       </section>
     </>
   );

@@ -1,6 +1,7 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../css/ConfirmationPage.css";
+import { Button } from "../components/ui";
 
 const ConfirmationPage = () => {
   const location = useLocation();
@@ -30,9 +31,9 @@ const ConfirmationPage = () => {
         </>
       )}
 
-      <button onClick={handleGoHome} className="btn-back-home">
+      <Button onClick={handleGoHome} className="btn-back-home">
         Volver al Inicio
-      </button>
+      </Button>
     </div>
   );
 };

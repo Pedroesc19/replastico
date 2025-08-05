@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import "../css/CartPage.css";
+import { Button } from "../components/ui";
 
 const CartPage = () => {
   const { cartItems, removeFromCart } = useContext(CartContext);
@@ -33,20 +34,21 @@ const CartPage = () => {
                   <p>Cantidad: {item.quantity}</p>
                   <p>Precio: ${item.product.price}</p>
                 </div>
-                <button
+                <Button
                   className="remove-button"
+                  variant="danger"
                   onClick={() => removeFromCart(item.product._id)}
                 >
                   Eliminar
-                </button>
+                </Button>
               </div>
             ))}
           </div>
           <div className="cart-summary">
             <h2>Total: ${totalPrice}</h2>
-            <button className="checkout-button" onClick={handleCheckout}>
+            <Button className="checkout-button" onClick={handleCheckout}>
               Proceder a Pagar
-            </button>
+            </Button>
           </div>
         </>
       )}

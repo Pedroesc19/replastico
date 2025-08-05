@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import "../css/ProductDetails.css";
 import Icon from "../icons/Icon";
+import { Button, TextInput } from "../components/ui";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -42,16 +43,16 @@ const ProductDetails = () => {
       <p className="product-description">{product.description}</p>
       <p className="product-price">Precio: ${product.price}</p>
       <div className="purchase-info">
-        <label htmlFor="quantity">Cantidad (mínimo 50): </label>
-        <input
-          type="number"
+        <TextInput
+          label="Cantidad (mínimo 50):"
           id="quantity"
+          type="number"
           value={quantity}
-          min="50"
+          min={50}
           onChange={(e) => setQuantity(Number(e.target.value))}
         />
         {error && <p className="error">{error}</p>}
-        <button onClick={handleAddToCart}>Añadir al carrito</button>
+        <Button onClick={handleAddToCart}>Añadir al carrito</Button>
       </div>
       <div className="additional-info">
         <p>

@@ -3,6 +3,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import "../css/ProductsPage.css";
+import { Button, Card, CardGrid } from "../components/ui";
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
@@ -20,9 +21,9 @@ const ProductsPage = () => {
       <div className="products-container">
         <h1>Productos</h1>
         {products.length > 0 ? (
-          <div className="products-grid">
+          <CardGrid className="products-grid">
             {products.map((product) => (
-              <div key={product._id} className="product-card">
+              <Card key={product._id} className="product-card">
                 <Link to={`/product/${product._id}`}>
                   {product.imageUrl ? (
                     <img
@@ -37,12 +38,12 @@ const ProductsPage = () => {
                 </Link>
                 <p>{product.description.substring(0, 50)}...</p>
                 <strong>${product.price}</strong>
-                <button onClick={() => addToCart(product)}>
+                <Button onClick={() => addToCart(product)}>
                   Añadir al carrito
-                </button>
-              </div>
+                </Button>
+              </Card>
             ))}
-          </div>
+          </CardGrid>
         ) : (
           <p className="no-products">No hay productos disponibles.</p>
         )}

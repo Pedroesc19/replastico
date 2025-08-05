@@ -1,9 +1,9 @@
 import React from "react";
 import "./ui.css";
 
-function Card({ children, ...props }) {
+function Card({ className = "", children, ...props }) {
   return (
-    <div className="ui-card" {...props}>
+    <div className={`ui-card ${className}`} {...props}>
       {children}
     </div>
   );

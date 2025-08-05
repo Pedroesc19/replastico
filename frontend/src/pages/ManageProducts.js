@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import "../css/ManageProducts.css";
 import ProductForm from "../components/ProductForm";
+import { Button, Card, CardGrid } from "../components/ui";
 
 const ManageProducts = () => {
   const [products, setProducts] = useState([]);
@@ -36,9 +37,9 @@ const ManageProducts = () => {
   return (
     <div className="manage-products">
       <h1>Administrar Productos</h1>
-      <div className="products-list">
+      <CardGrid className="products-list">
         {products.map((product) => (
-          <div key={product._id} className="product-card">
+          <Card key={product._id} className="product-card">
             {product.imageUrl ? (
               <img
                 src={product.imageUrl}
@@ -52,14 +53,17 @@ const ManageProducts = () => {
             <p>{product.description}</p>
             <strong>${product.price}</strong>
             <div className="product-actions">
-              <button onClick={() => handleEdit(product._id)}>Editar</button>
-              <button onClick={() => handleDelete(product._id)}>
+              <Button onClick={() => handleEdit(product._id)}>Editar</Button>
+              <Button
+                variant="danger"
+                onClick={() => handleDelete(product._id)}
+              >
                 Eliminar
-              </button>
+              </Button>
             </div>
-          </div>
+          </Card>
         ))}
-      </div>
+      </CardGrid>
       <div className="product-form-section">
         <h2>{editingProductId ? "Editar Producto" : "Agregar Producto"}</h2>
         <ProductForm productId={editingProductId} onSuccess={handleSuccess} />

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/RegisterPage.css";
+import { Button, Card, Form, TextInput } from "../components/ui";
 
 const RegisterPage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -36,57 +36,44 @@ const RegisterPage = () => {
         <h1>Replasticos</h1>
         <p>Regístrate para gestionar tus pedidos de contenedores plásticos.</p>
       </div>
-      <div className="register-card">
+      <Card className="register-card">
         <h2>Crea tu cuenta</h2>
         {error && <div className="error-message">{error}</div>}
-        <form onSubmit={handleRegister} className="form">
-          <div className="form-group">
-            <label htmlFor="name">Nombre</label>
-            <input
-              type="text"
-              id="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Tu nombre completo"
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="email">Correo electrónico</label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="empresa@correo.com"
-              required
-            />
-          </div>
-          <div className="form-group password-group">
-            <label htmlFor="password">Contraseña</label>
-            <input
-              type={showPassword ? "text" : "password"}
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Mínimo 8 caracteres"
-              required
-            />
-            <span
-              className="toggle-password"
-              onClick={() => setShowPassword((prev) => !prev)}
-            >
-              {showPassword ? "Ocultar" : "Mostrar"}
-            </span>
-          </div>
-          <button type="submit" className="register-button">
+        <Form onSubmit={handleRegister} className="form">
+          <TextInput
+            label="Nombre"
+            id="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Tu nombre completo"
+            required
+          />
+          <TextInput
+            label="Correo electrónico"
+            id="email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="empresa@correo.com"
+            required
+          />
+          <TextInput
+            label="Contraseña"
+            id="password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Mínimo 8 caracteres"
+            required
+          />
+          <Button type="submit" className="register-button">
             Registrarme
-          </button>
-        </form>
+          </Button>
+        </Form>
         <div className="login-link">
           ¿Ya tienes cuenta? <a href="/login">Inicia sesión</a>
         </div>
-      </div>
+      </Card>
     </div>
   );
 };

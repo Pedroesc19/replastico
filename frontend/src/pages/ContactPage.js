@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../css/ContactPage.css";
+import { Button, Card, Form, TextInput } from "../components/ui";
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -30,34 +31,30 @@ const ContactPage = () => {
         <a href="mailto:info@replasticos.com">info@replasticos.com</a> o llama
         al <a href="tel:+11234567890">(123) 456-7890</a>.
       </p>
-      <div className="contact-form-container">
+      <Card className="contact-form-container">
         <h2>Envíanos un mensaje</h2>
         {success && (
           <p className="success-message">Mensaje enviado con éxito!</p>
         )}
-        <form onSubmit={handleSubmit} className="contact-form">
-          <div className="form-group">
-            <label htmlFor="name">Nombre:</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="email">Correo electrónico:</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
+        <Form onSubmit={handleSubmit} className="contact-form">
+          <TextInput
+            label="Nombre:"
+            id="name"
+            name="name"
+            type="text"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+          <TextInput
+            label="Correo electrónico:"
+            id="email"
+            name="email"
+            type="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
           <div className="form-group">
             <label htmlFor="message">Mensaje:</label>
             <textarea
@@ -69,11 +66,11 @@ const ContactPage = () => {
               required
             ></textarea>
           </div>
-          <button type="submit" className="submit-button">
+          <Button type="submit" className="submit-button">
             Enviar Mensaje
-          </button>
-        </form>
-      </div>
+          </Button>
+        </Form>
+      </Card>
     </div>
   );
 };

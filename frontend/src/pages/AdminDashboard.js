@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/AdminDashboard.css";
+import { Button } from "../components/ui";
 
 const AdminDashboard = () => {
   const [orders, setOrders] = useState([]);
@@ -44,9 +45,9 @@ const AdminDashboard = () => {
           <p>${summary.totalSales}</p>
         </div>
       </div>
-      <button onClick={handleDownloadExcel} className="download-button">
+      <Button onClick={handleDownloadExcel} className="download-button">
         Descargar Excel de Pedidos
-      </button>
+      </Button>
       <table className="orders-table">
         <thead>
           <tr>

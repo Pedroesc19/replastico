@@ -1,7 +1,7 @@
 import React from "react";
 import "./ui.css";
 
-function TextInput({ label, id, ...props }) {
+function TextInput({ label, id, className = "", ...props }) {
   return (
     <div className="ui-field">
       {label && (
@@ -9,7 +9,7 @@ function TextInput({ label, id, ...props }) {
           {label}
         </label>
       )}
-      <input id={id} className="ui-input" {...props} />
+      <input id={id} className={`ui-input ${className}`} {...props} />
     </div>
   );
 }
