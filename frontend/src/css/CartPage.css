@@ -2,22 +2,22 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 2rem;
-  background: linear-gradient(135deg, #e9f5e9 0%, #f9fff9 100%);
+  background: linear-gradient(135deg, var(--color-background-light) 0%, var(--color-background-lighter) 100%);
   box-shadow: 0 10px 30px rgba(0, 100, 0, 0.1);
   border-radius: 16px;
-  font-family: var(--font-main, "Segoe UI", sans-serif);
+  font-family: var(--font-family-base);
 }
 
 .cart-title {
   text-align: center;
   margin-bottom: 2rem;
-  color: #333;
+  color: var(--color-text);
 }
 
 .empty-cart {
   text-align: center;
   font-size: 1.2rem;
-  color: #777;
+  color: var(--color-text-lighter);
 }
 
 .cart-items {
@@ -32,37 +32,37 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  border: 1px solid #eee;
+  border: 1px solid var(--color-gray-800);
   border-radius: 8px;
   transition: background-color 0.3s ease;
 }
 
 .cart-item:hover {
-  background-color: #f9f9f9;
+  background-color: var(--color-gray-100);
 }
 
 .item-details h3 {
   margin: 0;
   font-size: 1.2rem;
-  color: #333;
+  color: var(--color-text);
 }
 
 .item-details p {
   margin: 0.2rem 0;
-  color: #555;
+  color: var(--color-text-light);
 }
 
 .remove-button {
   background-color: transparent;
   border: none;
-  color: #d9534f;
+  color: var(--color-danger);
   font-size: 1rem;
   cursor: pointer;
   transition: color 0.3s ease;
 }
 
 .remove-button:hover {
-  color: #c9302c;
+  color: var(--color-danger-dark);
 }
 
 .cart-summary {
@@ -71,12 +71,12 @@
 
 .cart-summary h2 {
   margin-bottom: 1rem;
-  color: #333;
+  color: var(--color-text);
 }
 
 .checkout-button {
-  background-color: #28a745;
-  color: #fff;
+  background-color: var(--color-primary);
+  color: var(--color-surface);
   padding: 0.8rem 1.5rem;
   border: none;
   border-radius: 4px;
@@ -86,6 +86,6 @@
 }
 
 .checkout-button:hover {
-  background-color: #218838;
+  background-color: var(--color-primary-dark);
 }
 

@@ -1,8 +1,8 @@
 /* src/css/ManageProducts.css */
 .manage-products {
-  font-family: var(--font-main, "Segoe UI", sans-serif);
+  font-family: var(--font-family-base);
   padding: 2rem;
-  background: linear-gradient(135deg, #e9f5e9 0%, #f9fff9 100%);
+  background: linear-gradient(135deg, var(--color-background-light) 0%, var(--color-background-lighter) 100%);
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0, 100, 0, 0.1);
 }
@@ -10,7 +10,7 @@
 .manage-products h1 {
   text-align: center;
   margin-bottom: 2rem;
-  color: #333;
+  color: var(--color-text);
 }
 
 .products-list {
@@ -20,8 +20,8 @@
 }
 
 .product-card {
-  background: #fff;
-  border: 1px solid #eee;
+  background: var(--color-surface);
+  border: 1px solid var(--color-gray-800);
   border-radius: 8px;
   padding: 1rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -57,21 +57,21 @@
 }
 
 .product-actions button:first-child {
-  background-color: #007bff;
-  color: #fff;
+  background-color: var(--color-secondary);
+  color: var(--color-surface);
 }
 
 .product-actions button:first-child:hover {
-  background-color: #0056b3;
+  background-color: var(--color-secondary-dark);
 }
 
 .product-actions button:last-child {
-  background-color: #d9534f;
-  color: #fff;
+  background-color: var(--color-danger);
+  color: var(--color-surface);
 }
 
 .product-actions button:last-child:hover {
-  background-color: #c9302c;
+  background-color: var(--color-danger-dark);
 }
 
 .product-form-section {

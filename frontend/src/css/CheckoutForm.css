@@ -2,20 +2,20 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 2rem;
-  background: linear-gradient(135deg, #e9f5e9 0%, #f9fff9 100%);
+  background: linear-gradient(135deg, var(--color-background-light) 0%, var(--color-background-lighter) 100%);
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0, 100, 0, 0.1);
-  font-family: var(--font-main, "Segoe UI", sans-serif);
+  font-family: var(--font-family-base);
 }
 
 .checkout-form-container h1 {
   text-align: center;
-  color: #333;
+  color: var(--color-text);
   margin-bottom: 1.5rem;
 }
 
 .order-summary {
-  background-color: #f9f9f9;
+  background-color: var(--color-gray-100);
   border-radius: 6px;
   padding: 1rem;
   margin-bottom: 2rem;
@@ -23,7 +23,7 @@
 
 .order-summary h2 {
   margin-top: 0;
-  color: #333;
+  color: var(--color-text);
 }
 
 .order-summary ul {
@@ -33,7 +33,7 @@
 
 .order-summary li {
   padding: 0.5rem 0;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--color-gray-800);
 }
 
 .checkout-form .form-group {
@@ -43,27 +43,27 @@
 .checkout-form label {
   display: block;
   margin-bottom: 0.5rem;
-  color: #555;
+  color: var(--color-text-light);
 }
 
 .checkout-form input,
 .checkout-form textarea {
   width: 100%;
   padding: 0.8rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-gray-600);
   border-radius: 4px;
   font-size: 1rem;
 }
 
 .checkout-form input:focus,
 .checkout-form textarea:focus {
-  border-color: #007bff;
+  border-color: var(--color-secondary);
   outline: none;
 }
 
 .submit-button {
-  background-color: #28a745;
-  color: #fff;
+  background-color: var(--color-primary);
+  color: var(--color-surface);
   padding: 0.9rem 1.5rem;
   border: none;
   border-radius: 6px;
@@ -74,11 +74,11 @@
 }
 
 .submit-button:hover {
-  background-color: #218838;
+  background-color: var(--color-primary-dark);
 }
 
 .error {
-  color: #d9534f;
+  color: var(--color-danger);
   text-align: center;
   margin-bottom: 1rem;
 }

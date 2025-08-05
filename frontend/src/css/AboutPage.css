@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: flex-start;
   padding: 3rem 2rem;
-  background: linear-gradient(135deg, #e9f5e9 0%, #f9fff9 100%);
+  background: linear-gradient(135deg, var(--color-background-light) 0%, var(--color-background-lighter) 100%);
   gap: 2rem;
 }
 
@@ -15,24 +15,24 @@
 
 .about-title {
   font-size: 3rem;
-  color: #2d602d;
+  color: var(--color-success-dark);
   margin-bottom: 2rem;
   text-align: center;
   font-weight: 600;
 }
 
 .about-block {
-  background-color: #ffffff;
+  background-color: var(--color-surface);
   padding: 2rem;
   margin-bottom: 2rem;
   border-radius: 16px;
   box-shadow: 0 6px 18px rgba(0, 100, 0, 0.06);
-  border-left: 5px solid #4caf50;
+  border-left: 5px solid var(--color-success);
 }
 
 .about-subtitle {
   font-size: 1.6rem;
-  color: #388e3c;
+  color: var(--color-success-dark);
   margin-bottom: 1rem;
   font-weight: 600;
 }
@@ -40,7 +40,7 @@
 .about-description {
   font-size: 1.05rem;
   line-height: 1.8;
-  color: #444;
+  color: var(--color-text-secondary);
   margin-bottom: 1rem;
 }
 
@@ -53,8 +53,8 @@
 }
 
 .value-item {
-  background: #f4fef4;
-  border: 1px solid #c8e6c9;
+  background: var(--color-background-lighter);
+  border: 1px solid var(--color-border-light);
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   padding: 1.5rem;
@@ -75,14 +75,14 @@
 }
 
 .value-item h3 {
-  color: #4caf50;
+  color: var(--color-success);
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
 }
 
 .value-item p {
   font-size: 0.95rem;
-  color: #555;
+  color: var(--color-text-light);
 }
 
 /* Responsive Design */

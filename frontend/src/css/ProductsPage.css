@@ -1,8 +1,8 @@
 /* src/css/ProductsPage.css */
 .products-page {
   padding: 2rem;
-  font-family: var(--font-main, "Segoe UI", sans-serif);
-  background: linear-gradient(135deg, #e9f5e9 0%, #f9fff9 100%);
+  font-family: var(--font-family-base);
+  background: linear-gradient(135deg, var(--color-background-light) 0%, var(--color-background-lighter) 100%);
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -11,7 +11,7 @@
 .products-container {
   max-width: 1200px;
   width: 100%;
-  background: #fff;
+  background: var(--color-surface);
   padding: 2rem;
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0, 100, 0, 0.1);
@@ -20,7 +20,7 @@
 .products-page h1 {
   text-align: center;
   margin-bottom: 2rem;
-  color: #333;
+  color: var(--color-text);
 }
 
 .products-grid {
@@ -30,9 +30,9 @@
 }
 
 .product-card {
-  background: #fff;
+  background: var(--color-surface);
   padding: 1.5rem;
-  border: 1px solid #eee;
+  border: 1px solid var(--color-gray-800);
   border-radius: 8px;
   text-align: center;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -54,12 +54,12 @@
 
 .product-card h3 {
   margin: 0.5rem 0;
-  color: #333;
+  color: var(--color-text);
   font-size: 1.2rem;
 }
 
 .product-card p {
-  color: #555;
+  color: var(--color-text-light);
   margin: 1rem 0;
   font-size: 0.95rem;
 }
@@ -67,13 +67,13 @@
 .product-card strong {
   display: block;
   margin-bottom: 1rem;
-  color: #28a745;
+  color: var(--color-primary);
   font-size: 1.1rem;
 }
 
 .product-card button {
-  background-color: #007bff;
-  color: #fff;
+  background-color: var(--color-secondary);
+  color: var(--color-surface);
   padding: 0.6rem 1.2rem;
   border: none;
   border-radius: 4px;
@@ -82,23 +82,23 @@
 }
 
 .product-card button:hover {
-  background-color: #0056b3;
+  background-color: var(--color-secondary-dark);
 }
 
 .no-image {
-  background: #eee;
+  background: var(--color-gray-800);
   width: 100%;
   height: 250px;
   border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #777;
+  color: var(--color-text-lighter);
 }
 
 .no-products {
   text-align: center;
-  color: #777;
+  color: var(--color-text-lighter);
   font-size: 1.2rem;
   margin-top: 2rem;
 }
