@@ -84,7 +84,67 @@ const AdminDashboard = () => {
   }, []);
 
   const handleDownloadExcel = () => {
-    window.open("http://localhost:5000/api/orders/download", "_blank");
+    const params = new URLSearchParams();
+    if (statusFilter) {
+      params.append("status", statusFilter);
+    }
+    if (startDate) {
+      params.append("startDate", startDate);
+    }
+    if (endDate) {
+      params.append("endDate", endDate);
+    }
+    const query = params.toString();
+    const url = `http://localhost:5000/api/orders/download${
+      query ? `?${query}` : ""
+    }`;
+    window.open(url, "_blank");
+  };
+
+  const handleDownloadCSV = () => {
+    const headers = [
+      "ID Orden",
+      "Usuario",
+      "Total",
+      "Estado",
+      "Dirección de Envío",
+      "Teléfono",
+      "Instrucciones",
+      "Fecha",
+    ];
+    const rows = sortedOrders.map((o) => [
+      o._id,
+      o.user || "N/A",
+      o.totalPrice,
+      o.status,
+      o.shippingAddress,
+      o.phone,
+      o.instructions,
+      new Date(o.createdAt).toLocaleString(),
+    ]);
+    const summaryRow = [
+      "Totales",
+      "",
+      totals.totalSales,
+      "",
+      "",
+      "",
+      "",
+      `Pedidos: ${totals.count}`,
+    ];
+    const csv = [headers, ...rows, summaryRow]
+      .map((row) => row.map((f) => `"${String(f).replace(/"/g, '""')}"`).join(","))
+      .join("\n");
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.setAttribute(
+      "download",
+      `orders_${new Date().toISOString().replace(/[:.]/g, "-")}.csv`
+    );
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const handleStatusChange = (id, newStatus) => {
@@ -106,9 +166,13 @@ const AdminDashboard = () => {
         }
         return res.json();
       })
+      .then(() => {
+        alert("Estado actualizado");
+      })
       .catch((err) => {
         console.error("Error updating status:", err);
         setOrders(previous);
+        alert("Error actualizando el estado");
       });
   };
 
@@ -147,6 +211,14 @@ const AdminDashboard = () => {
     return sortable;
   }, [orders, sortConfig]);
 
+  const totals = useMemo(() => {
+    const totalSales = sortedOrders.reduce(
+      (sum, o) => sum + o.totalPrice,
+      0
+    );
+    return { totalSales, count: sortedOrders.length };
+  }, [sortedOrders]);
+
   return (
     <div className="admin-dashboard grid cols-1">
       <h1>Dashboard de Administrador</h1>
@@ -172,6 +244,9 @@ const AdminDashboard = () => {
       )}
       <Button onClick={handleDownloadExcel} className="download-button">
         Descargar Excel de Pedidos
+      </Button>
+      <Button onClick={handleDownloadCSV} className="download-button">
+        Exportar CSV
       </Button>
       <div className="controls">
         <div className="filters">
@@ -317,6 +392,11 @@ const AdminDashboard = () => {
                 <td>{new Date(order.createdAt).toLocaleString()}</td>
               </tr>
             ))}
+            <tr className="summary-row">
+              <td colSpan={2}>Totales</td>
+              <td>${totals.totalSales}</td>
+              <td colSpan={5}>Pedidos: {totals.count}</td>
+            </tr>
           </tbody>
         </table>
       )}
