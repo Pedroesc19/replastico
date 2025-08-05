@@ -34,10 +34,11 @@
   font-size: var(--font-size-md);
 }
 
-.form-group input:focus,
-.form-group textarea:focus {
-  outline: none;
+.form-group input:focus-visible,
+.form-group textarea:focus-visible {
   border-color: var(--color-secondary);
+  outline: 3px solid var(--color-focus-outline);
+  outline-offset: 2px;
 }
 
 .submit-button {

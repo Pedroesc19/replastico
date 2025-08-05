@@ -64,12 +64,13 @@ body {
   border-radius: 8px;
   font-size: var(--font-size-md);
   background-color: var(--color-gray-300);
-  outline: none;
   transition: box-shadow 0.2s ease;
 }
 
-.form-group input:focus {
+.form-group input:focus-visible {
   box-shadow: 0 0 0 2px var(--color-success)44;
+  outline: 3px solid var(--color-focus-outline);
+  outline-offset: 2px;
 }
 
 .password-group {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import "../css/Navbar.css";
 
@@ -11,6 +11,16 @@ const AdminNavbar = ({ onLogout }) => {
     navigate("/");
   };
 
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        setMenuOpen(false);
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   return (
     <header className="navbar">
       <div className="navbar-container">
@@ -20,12 +30,18 @@ const AdminNavbar = ({ onLogout }) => {
         </Link>
         <button
           className="navbar-toggle"
+          aria-label="Toggle navigation"
+          aria-controls="primary-navigation"
+          aria-expanded={menuOpen}
           onClick={() => setMenuOpen(!menuOpen)}
         >
           &#9776;
         </button>
         <nav className="navbar-menu">
-          <ul className={`navbar-links ${menuOpen ? "open" : ""}`}>
+          <ul
+            id="primary-navigation"
+            className={`navbar-links ${menuOpen ? "open" : ""}`}
+          >
             <li>
               <NavLink to="/manage-products">Administrar Productos</NavLink>
             </li>
