@@ -59,8 +59,45 @@ export const createOrder = async (req, res) => {
 // Función para obtener todos los pedidos (incluyendo detalles de productos)
 export const getOrders = async (req, res) => {
   try {
-    const orders = await Order.find().populate("products.product");
-    res.json(orders);
+    const {
+      page = 1,
+      limit = 10,
+      status,
+      startDate,
+      endDate,
+    } = req.query;
+
+    const query = {};
+
+    if (status) {
+      query.status = status;
+    }
+
+    if (startDate || endDate) {
+      query.createdAt = {};
+      if (startDate) {
+        query.createdAt.$gte = new Date(startDate);
+      }
+      if (endDate) {
+        query.createdAt.$lte = new Date(endDate);
+      }
+    }
+
+    const skip = (Number(page) - 1) * Number(limit);
+    const totalOrders = await Order.countDocuments(query);
+
+    const orders = await Order.find(query)
+      .populate("products.product")
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(Number(limit));
+
+    res.json({
+      orders,
+      currentPage: Number(page),
+      totalPages: Math.ceil(totalOrders / Number(limit)),
+      totalOrders,
+    });
   } catch (error) {
     res
       .status(500)
