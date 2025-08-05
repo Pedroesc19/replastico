@@ -39,7 +39,15 @@ Use a single icon family such as [Heroicons](https://heroicons.com). Audit exist
 
 - Page transitions and interactive elements should use the motion tokens for timing and easing.
 - Avoid animations longer than `400ms` to keep interactions snappy.
-- Prefer fading and sliding transitions; define reusable helpers in [`src/design/motion.js`](src/design/motion.js).
+- Reusable helpers `fade`, `slide`, and `scale` live in [`src/design/motion.js`](src/design/motion.js).
+- Small interactions like buttons should animate in `≤150ms` (`motion.fade()`).
+- Overlays such as modals use `≤250ms` via `motion.fade({ overlay: true })` or `motion.scale({ overlay: true })`.
+- Example:
+
+  ```jsx
+  import motion from "../design/motion";
+  <div style={motion.slide()}>Content</div>
+  ```
 
 ## Accessibility Checklist
 
