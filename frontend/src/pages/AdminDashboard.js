@@ -35,8 +35,8 @@ const AdminDashboard = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setOrders(data.orders);
-        setTotalPages(data.totalPages);
+        setOrders(Array.isArray(data.orders) ? data.orders : []);
+        setTotalPages(data.totalPages || 1);
       })
       .catch((err) => console.error("Error fetching orders:", err));
   };
