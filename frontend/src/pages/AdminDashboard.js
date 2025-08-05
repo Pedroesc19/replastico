@@ -7,22 +7,50 @@ import { Button } from "../components/ui";
 const AdminDashboard = () => {
   const [orders, setOrders] = useState([]);
   const [summary, setSummary] = useState({ users: 0, orders: 0, totalSales: 0 });
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [statusFilter, setStatusFilter] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const limit = 10;
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
-  useEffect(() => {
-    fetch("http://localhost:5000/api/orders", {
+  const getOrders = () => {
+    const params = new URLSearchParams({
+      page: currentPage,
+      limit,
+    });
+    if (statusFilter) {
+      params.append("status", statusFilter);
+    }
+    if (startDate) {
+      params.append("startDate", startDate);
+    }
+    if (endDate) {
+      params.append("endDate", endDate);
+    }
+    fetch(`http://localhost:5000/api/orders?${params.toString()}`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())
-      .then((data) => setOrders(data))
+      .then((data) => {
+        setOrders(data.orders);
+        setTotalPages(data.totalPages);
+      })
       .catch((err) => console.error("Error fetching orders:", err));
+  };
 
+  useEffect(() => {
+    getOrders();
+  }, [token, currentPage, statusFilter, startDate, endDate]);
+
+  useEffect(() => {
     fetch("http://localhost:5000/api/admin/summary")
       .then((res) => res.json())
       .then((data) => setSummary(data))
       .catch((err) => console.error("Error fetching summary:", err));
-  }, [token]);
+  }, []);
 
   const handleDownloadExcel = () => {
     window.open("http://localhost:5000/api/orders/download", "_blank");
@@ -48,6 +76,54 @@ const AdminDashboard = () => {
       <Button onClick={handleDownloadExcel} className="download-button">
         Descargar Excel de Pedidos
       </Button>
+      <div className="controls">
+        <div className="filters">
+          <input
+            type="date"
+            value={startDate}
+            onChange={(e) => {
+              setStartDate(e.target.value);
+              setCurrentPage(1);
+            }}
+          />
+          <input
+            type="date"
+            value={endDate}
+            onChange={(e) => {
+              setEndDate(e.target.value);
+              setCurrentPage(1);
+            }}
+          />
+          <select
+            value={statusFilter}
+            onChange={(e) => {
+              setStatusFilter(e.target.value);
+              setCurrentPage(1);
+            }}
+          >
+            <option value="">Todos</option>
+            <option value="Pendiente">Pendiente</option>
+            <option value="Completado">Completado</option>
+          </select>
+        </div>
+        <div className="pagination">
+          <Button
+            onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+            disabled={currentPage === 1}
+          >
+            Anterior
+          </Button>
+          <span>
+            Página {currentPage} de {totalPages}
+          </span>
+          <Button
+            onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+            disabled={currentPage === totalPages}
+          >
+            Siguiente
+          </Button>
+        </div>
+      </div>
       <table className="orders-table">
         <thead>
           <tr>
