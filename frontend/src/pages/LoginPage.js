@@ -3,14 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import "../css/LoginPage.css";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEnvelope,
-  faLock,
-  faEye,
-  faEyeSlash,
-  faLeaf,
-} from "@fortawesome/free-solid-svg-icons";
+import Icon from "../icons/Icon";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -46,7 +39,7 @@ const LoginPage = () => {
     <div className="login-container">
       <div className="login-card">
         <div className="login-header">
-          <FontAwesomeIcon icon={faLeaf} className="login-leaf-icon" />
+          <Icon name="leaf" className="login-leaf-icon" />
           <h2>Bienvenido a RePlastiCos</h2>
           <p className="login-subtext">
             Accede para gestionar tus pedidos de envases plásticos.
@@ -59,7 +52,7 @@ const LoginPage = () => {
           <div className="form-group">
             <label htmlFor="email">Correo electrónico</label>
             <div className="input-flex">
-              <FontAwesomeIcon icon={faEnvelope} className="flex-icon" />
+              <Icon name="envelope" className="flex-icon" />
               <input
                 type="email"
                 id="email"
@@ -74,7 +67,7 @@ const LoginPage = () => {
           <div className="form-group">
             <label htmlFor="password">Contraseña</label>
             <div className="input-flex">
-              <FontAwesomeIcon icon={faLock} className="flex-icon" />
+              <Icon name="lock" className="flex-icon" />
               <input
                 type={showPassword ? "text" : "password"}
                 id="password"
@@ -87,7 +80,7 @@ const LoginPage = () => {
                 className="flex-icon clickable"
                 onClick={() => setShowPassword((prev) => !prev)}
               >
-                <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+                <Icon name={showPassword ? "eyeSlash" : "eye"} />
               </span>
             </div>
           </div>
