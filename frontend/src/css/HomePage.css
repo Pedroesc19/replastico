@@ -209,6 +209,141 @@
 }
 
 /* ---------------------
+   Stats Section
+---------------------- */
+.stats-section {
+  background-color: var(--color-surface);
+  padding: calc(var(--space-6) * 2) var(--space-6);
+  text-align: center;
+}
+
+.stats-grid {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-6);
+  flex-wrap: wrap;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-number {
+  font-size: calc(var(--font-size-xl) * 1.333);
+  color: var(--color-success);
+  font-weight: 700;
+  margin-bottom: var(--space-2);
+}
+
+.stat-label {
+  color: var(--color-text-light);
+}
+
+/* ---------------------
+   Promo Section
+---------------------- */
+.promo-section {
+  background-color: var(--color-background-light);
+  text-align: center;
+  padding: calc(var(--space-6) * 2) var(--space-6);
+}
+
+.promo-section h2 {
+  color: var(--color-success-dark);
+  margin-bottom: var(--space-4);
+}
+
+/* ---------------------
+   Testimonials
+---------------------- */
+.testimonials-carousel {
+  padding: calc(var(--space-6) * 2) var(--space-6);
+  text-align: center;
+  background-color: var(--color-background-lighter);
+}
+
+.testimonial {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.testimonial-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: var(--space-3);
+}
+
+.testimonial-quote {
+  font-style: italic;
+  margin-bottom: var(--space-2);
+  color: var(--color-text-light);
+}
+
+.testimonial-author {
+  font-weight: 600;
+  color: var(--color-success-dark);
+}
+
+/* ---------------------
+   Newsletter
+---------------------- */
+.newsletter-section {
+  background-color: var(--color-background-lighter);
+  text-align: center;
+  padding: calc(var(--space-6) * 2) var(--space-6);
+}
+
+.newsletter-form {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.newsletter-form input {
+  padding: var(--space-3);
+  border: 1px solid var(--color-border-light);
+  border-radius: 4px;
+  min-width: 250px;
+}
+
+/* ---------------------
+   Helpers
+---------------------- */
+.preview-item {
+  cursor: pointer;
+}
+
+.preview-item.skeleton {
+  background-color: var(--color-background-light);
+  height: 200px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+/* ---------------------
+   Floating Contact
+---------------------- */
+.floating-contact {
+  position: fixed;
+  bottom: var(--space-6);
+  right: var(--space-6);
+  background-color: #25d366;
+  color: var(--color-surface);
+  padding: var(--space-4);
+  border-radius: 50%;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+/* ---------------------
    Final Call to Action
 ---------------------- */
 .cta-final {
