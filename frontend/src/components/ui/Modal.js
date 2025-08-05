@@ -1,13 +1,19 @@
 import React from "react";
 import "./ui.css";
+import motion from "../../design/motion";
 
 function Modal({ isOpen, onClose, children }) {
   if (!isOpen) {
     return null;
   }
   return (
-    <div className="ui-modal-overlay" role="dialog" aria-modal="true">
-      <div className="ui-modal">
+    <div
+      className="ui-modal-overlay"
+      style={motion.fade({ overlay: true })}
+      role="dialog"
+      aria-modal="true"
+    >
+      <div className="ui-modal" style={motion.scale({ overlay: true })}>
         <button className="ui-modal-close" onClick={onClose} aria-label="Close">
           ×
         </button>

@@ -7,7 +7,8 @@
   font-size: var(--font-size-md);
   font-family: var(--font-family-base);
   cursor: pointer;
-  transition: background-color var(--motion-fast) var(--motion-ease);
+  transition: background-color var(--motion-fast) var(--motion-ease),
+    transform var(--motion-fast) var(--motion-ease);
 }
 .ui-button--primary {
   background-color: var(--color-primary);
@@ -34,6 +35,9 @@
   outline: 2px solid var(--color-secondary);
   outline-offset: 2px;
 }
+.ui-button:hover {
+  transform: scale(1.05);
+}
 
 .ui-card {
   background: var(--color-surface);
@@ -52,7 +56,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: fadeIn var(--motion-medium) var(--motion-ease);
 }
 .ui-modal {
   position: relative;
@@ -100,13 +103,4 @@
   display: grid;
   gap: var(--space-4);
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }
