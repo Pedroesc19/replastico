@@ -105,6 +105,24 @@ export const getOrders = async (req, res) => {
   }
 };
 
+// Actualiza el estado de un pedido
+export const updateOrderStatus = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+    const order = await Order.findByIdAndUpdate(id, { status }, { new: true });
+    if (!order) {
+      return res.status(404).json({ message: "Pedido no encontrado" });
+    }
+    return res.json(order);
+  } catch (error) {
+    return res.status(500).json({
+      message: "Error al actualizar el estado del pedido",
+      error: error.message,
+    });
+  }
+};
+
 // Función para descargar el archivo Excel de pedidos
 export const downloadOrdersExcel = (req, res) => {
   const filePath = path.join(process.cwd(), "data", "pedidos.xlsx");

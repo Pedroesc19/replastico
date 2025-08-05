@@ -56,6 +56,31 @@ const AdminDashboard = () => {
     window.open("http://localhost:5000/api/orders/download", "_blank");
   };
 
+  const handleStatusChange = (id, newStatus) => {
+    const previous = [...orders];
+    setOrders((curr) =>
+      curr.map((o) => (o._id === id ? { ...o, status: newStatus } : o))
+    );
+    fetch(`http://localhost:5000/api/orders/${id}/status`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ status: newStatus }),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Error actualizando el estado");
+        }
+        return res.json();
+      })
+      .catch((err) => {
+        console.error("Error updating status:", err);
+        setOrders(previous);
+      });
+  };
+
   return (
     <div className="admin-dashboard grid cols-1">
       <h1>Dashboard de Administrador</h1>
@@ -143,7 +168,17 @@ const AdminDashboard = () => {
               <td>{order._id}</td>
               <td>{order.user || "N/A"}</td>
               <td>${order.totalPrice}</td>
-              <td>{order.status}</td>
+              <td>
+                <select
+                  value={order.status}
+                  onChange={(e) =>
+                    handleStatusChange(order._id, e.target.value)
+                  }
+                >
+                  <option value="Pendiente">Pendiente</option>
+                  <option value="Completado">Completado</option>
+                </select>
+              </td>
               <td>{order.shippingAddress}</td>
               <td>{order.phone}</td>
               <td>{order.instructions}</td>

@@ -1,7 +1,11 @@
 // backend/routes/orderRoutes.js
 import express from "express";
-import { createOrder, getOrders } from "../controllers/orderController.js";
-import { downloadOrdersExcel } from "../controllers/orderController.js";
+import {
+  createOrder,
+  getOrders,
+  updateOrderStatus,
+  downloadOrdersExcel,
+} from "../controllers/orderController.js";
 
 const router = express.Router();
 
@@ -9,6 +13,8 @@ const router = express.Router();
 router.post("/", createOrder);
 // Ruta para obtener pedidos (puedes protegerla según la autenticación)
 router.get("/", getOrders);
+
+router.patch("/:id/status", updateOrderStatus);
 
 router.get("/download", downloadOrdersExcel);
 
