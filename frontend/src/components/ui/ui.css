@@ -91,6 +91,17 @@
   outline: none;
 }
 
+.ui-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.ui-card-grid {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

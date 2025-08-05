@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import "../css/CheckoutForm.css";
+import { Button, Card, Form, TextInput } from "../components/ui";
 
 const CheckoutForm = () => {
   const { cartItems, clearCart } = useContext(CartContext);
@@ -68,7 +69,7 @@ const CheckoutForm = () => {
   return (
     <div className="checkout-form-container">
       <h1>Formulario de Pago</h1>
-      <div className="order-summary">
+      <Card className="order-summary">
         <h2>Resumen del Pedido</h2>
         <ul>
           {cartItems.map((item) => (
@@ -79,31 +80,27 @@ const CheckoutForm = () => {
           ))}
         </ul>
         <h3>Total: ${totalPrice}</h3>
-      </div>
+      </Card>
       {error && <div className="error">{error}</div>}
-      <form onSubmit={handleSubmit} className="checkout-form">
-        <div className="form-group">
-          <label htmlFor="shippingAddress">Dirección de Envío</label>
-          <input
-            type="text"
-            id="shippingAddress"
-            name="shippingAddress"
-            value={formData.shippingAddress}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="phone">Teléfono</label>
-          <input
-            type="text"
-            id="phone"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            required
-          />
-        </div>
+      <Form onSubmit={handleSubmit} className="checkout-form">
+        <TextInput
+          label="Dirección de Envío"
+          id="shippingAddress"
+          name="shippingAddress"
+          type="text"
+          value={formData.shippingAddress}
+          onChange={handleChange}
+          required
+        />
+        <TextInput
+          label="Teléfono"
+          id="phone"
+          name="phone"
+          type="text"
+          value={formData.phone}
+          onChange={handleChange}
+          required
+        />
         <div className="form-group">
           <label htmlFor="instructions">
             Instrucciones Adicionales (opcional)
@@ -115,10 +112,10 @@ const CheckoutForm = () => {
             onChange={handleChange}
           ></textarea>
         </div>
-        <button type="submit" className="submit-button">
+        <Button type="submit" className="submit-button">
           Confirmar Pedido
-        </button>
-      </form>
+        </Button>
+      </Form>
     </div>
   );
 };

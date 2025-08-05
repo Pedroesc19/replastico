@@ -4,11 +4,11 @@ import { AuthContext } from "../context/AuthContext";
 import "../css/LoginPage.css";
 
 import Icon from "../icons/Icon";
+import { Button, Card, Form, TextInput } from "../components/ui";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -37,7 +37,7 @@ const LoginPage = () => {
 
   return (
     <div className="login-container">
-      <div className="login-card">
+      <Card className="login-card">
         <div className="login-header">
           <Icon name="leaf" className="login-leaf-icon" />
           <h2>Bienvenido a RePlastiCos</h2>
@@ -48,43 +48,25 @@ const LoginPage = () => {
 
         {error && <div className="error-message">{error}</div>}
 
-        <form onSubmit={handleLogin}>
-          <div className="form-group">
-            <label htmlFor="email">Correo electrónico</label>
-            <div className="input-flex">
-              <Icon name="envelope" className="flex-icon" />
-              <input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="ejemplo@correo.com"
-                required
-              />
-            </div>
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="password">Contraseña</label>
-            <div className="input-flex">
-              <Icon name="lock" className="flex-icon" />
-              <input
-                type={showPassword ? "text" : "password"}
-                id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Tu contraseña"
-                required
-              />
-              <span
-                className="flex-icon clickable"
-                onClick={() => setShowPassword((prev) => !prev)}
-              >
-                <Icon name={showPassword ? "eyeSlash" : "eye"} />
-              </span>
-            </div>
-          </div>
-
+        <Form onSubmit={handleLogin}>
+          <TextInput
+            label="Correo electrónico"
+            id="email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="ejemplo@correo.com"
+            required
+          />
+          <TextInput
+            label="Contraseña"
+            id="password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Tu contraseña"
+            required
+          />
           <div className="form-options">
             <label className="remember-me">
               <input
@@ -98,16 +80,14 @@ const LoginPage = () => {
               ¿Olvidaste tu contraseña?
             </a>
           </div>
-
-          <button type="submit" className="login-button">
+          <Button type="submit" className="login-button">
             Iniciar sesión
-          </button>
-
+          </Button>
           <div className="login-footer">
             ¿No tienes cuenta? <a href="/register">Regístrate</a>
           </div>
-        </form>
-      </div>
+        </Form>
+      </Card>
     </div>
   );
 };

@@ -1,9 +1,12 @@
 import React from "react";
 import "./ui.css";
 
-function Button({ variant = "primary", children, ...props }) {
+function Button({ variant = "primary", className = "", children, ...props }) {
   return (
-    <button className={`ui-button ui-button--${variant}`} {...props}>
+    <button
+      className={`ui-button ui-button--${variant} ${className}`}
+      {...props}
+    >
       {children}
     </button>
   );
