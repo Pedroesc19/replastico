@@ -3,7 +3,7 @@ import Order from "../models/Order.js";
 import Product from "../models/Product.js";
 import path from "path";
 import fs from "fs";
-import { saveOrderToExcel } from "../services/excelService.js";
+import { saveOrderToExcel, exportOrdersToExcel } from "../services/excelService.js";
 
 // Crea un pedido incluyendo información adicional (checkout)
 export const createOrder = async (req, res) => {
@@ -124,15 +124,41 @@ export const updateOrderStatus = async (req, res) => {
 };
 
 // Función para descargar el archivo Excel de pedidos
-export const downloadOrdersExcel = (req, res) => {
-  const filePath = path.join(process.cwd(), "data", "pedidos.xlsx");
-  if (fs.existsSync(filePath)) {
-    res.download(filePath, "pedidos.xlsx", (err) => {
+export const downloadOrdersExcel = async (req, res) => {
+  try {
+    const { status, startDate, endDate } = req.query;
+    const query = {};
+    if (status) {
+      query.status = status;
+    }
+    if (startDate || endDate) {
+      query.createdAt = {};
+      if (startDate) {
+        query.createdAt.$gte = new Date(startDate);
+      }
+      if (endDate) {
+        query.createdAt.$lte = new Date(endDate);
+      }
+    }
+
+    const orders = await Order.find(query)
+      .populate("products.product")
+      .sort({ createdAt: -1 });
+
+    const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+    const fileName = `pedidos_${timestamp}.xlsx`;
+    const filePath = path.join(process.cwd(), "data", fileName);
+    exportOrdersToExcel(orders, filePath);
+
+    res.download(filePath, fileName, (err) => {
       if (err) {
         res.status(500).json({ message: "Error al descargar el archivo" });
       }
     });
-  } else {
-    res.status(404).json({ message: "No se encontró el archivo Excel" });
+  } catch (error) {
+    res.status(500).json({
+      message: "Error al generar el archivo Excel",
+      error: error.message,
+    });
   }
 };

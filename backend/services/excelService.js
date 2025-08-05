@@ -21,7 +21,17 @@ export function saveOrderToExcel(order) {
     // Crear un libro y hoja nuevos
     workbook = XLSX.utils.book_new();
     worksheet = XLSX.utils.aoa_to_sheet([
-      ["OrderID", "UserID", "Products", "TotalPrice", "Status", "Date"],
+      [
+        "OrderID",
+        "UserID",
+        "Products",
+        "TotalPrice",
+        "Status",
+        "Date",
+        "ShippingAddress",
+        "Phone",
+        "Instructions",
+      ],
     ]);
     XLSX.utils.book_append_sheet(workbook, worksheet, "Pedidos");
   }
@@ -39,9 +49,22 @@ export function saveOrderToExcel(order) {
   const totalPrice = order.totalPrice;
   const status = order.status || "Pendiente";
   const date = new Date().toLocaleString();
+  const shippingAddress = order.shippingAddress || "";
+  const phone = order.phone || "";
+  const instructions = order.instructions || "";
 
   // Escribir las celdas
-  const rowValues = [orderId, userId, productsStr, totalPrice, status, date];
+  const rowValues = [
+    orderId,
+    userId,
+    productsStr,
+    totalPrice,
+    status,
+    date,
+    shippingAddress,
+    phone,
+    instructions,
+  ];
   rowValues.forEach((val, colIndex) => {
     const cellAddress = XLSX.utils.encode_cell({ r: nextRow, c: colIndex });
     worksheet[cellAddress] = { t: "s", v: val.toString() };
@@ -56,4 +79,42 @@ export function saveOrderToExcel(order) {
   // 4. Guardar de nuevo
   const wbOut = XLSX.write(workbook, { bookType: "xlsx", type: "buffer" });
   fs.writeFileSync(EXCEL_FILE_PATH, wbOut);
+}
+
+export function exportOrdersToExcel(orders, filePath) {
+  const header = [
+    "OrderID",
+    "UserID",
+    "Products",
+    "TotalPrice",
+    "Status",
+    "Date",
+    "ShippingAddress",
+    "Phone",
+    "Instructions",
+  ];
+  const data = orders.map((order) => {
+    const productsStr = order.products
+      .map(
+        (p) =>
+          `(${p.product._id || p.product}, cant: ${p.quantity})`
+      )
+      .join(", ");
+    return [
+      order._id.toString(),
+      order.user ? order.user.toString() : "N/A",
+      productsStr,
+      order.totalPrice,
+      order.status,
+      new Date(order.createdAt).toLocaleString(),
+      order.shippingAddress || "",
+      order.phone || "",
+      order.instructions || "",
+    ];
+  });
+  const worksheet = XLSX.utils.aoa_to_sheet([header, ...data]);
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Pedidos");
+  const wbOut = XLSX.write(workbook, { bookType: "xlsx", type: "buffer" });
+  fs.writeFileSync(filePath, wbOut);
 }
