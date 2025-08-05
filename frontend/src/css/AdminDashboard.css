@@ -84,3 +84,49 @@
   background-color: var(--color-gray-200);
   color: var(--color-text);
 }
+
+.orders-table th.sortable {
+  cursor: pointer;
+}
+
+.orders-table th.sortable.asc::after {
+  content: " \25B2";
+}
+
+.orders-table th.sortable.desc::after {
+  content: " \25BC";
+}
+
+.spinner {
+  text-align: center;
+  margin: var(--space-4) 0;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  margin: var(--space-4) 0;
+}
+
+@media (max-width: 768px) {
+  .summary-cards {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-4);
+  }
+
+  .pagination {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .orders-table {
+    display: block;
+    overflow-x: auto;
+  }
+}
