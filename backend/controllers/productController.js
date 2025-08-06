@@ -3,8 +3,14 @@ import Product from "../models/Product.js";
 
 export const getProducts = async (req, res) => {
   try {
-    const products = await Product.find();
-    res.json(products);
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const skip = (page - 1) * limit;
+    const [products, total] = await Promise.all([
+      Product.find().skip(skip).limit(limit),
+      Product.countDocuments(),
+    ]);
+    res.json({ products, total });
   } catch (error) {
     res.status(500).json({ message: "Error al obtener productos" });
   }
@@ -58,5 +64,14 @@ export const getProductById = async (req, res) => {
     res.json(product);
   } catch (error) {
     res.status(500).json({ message: "Error al obtener el producto" });
+  }
+};
+
+export const getCategories = async (_req, res) => {
+  try {
+    const categories = await Product.distinct("category");
+    res.json(categories);
+  } catch (error) {
+    res.status(500).json({ message: "Error al obtener categorias" });
   }
 };
