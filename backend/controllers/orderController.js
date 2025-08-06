@@ -60,7 +60,8 @@ export const createOrder = async (req, res) => {
       status: "Pendiente",
     });
 
-    saveOrderToExcel(order);
+    const orderForExcel = { ...order.toObject(), products: detailedProducts };
+    saveOrderToExcel(orderForExcel);
 
     return res.status(201).json(order);
   } catch (error) {
