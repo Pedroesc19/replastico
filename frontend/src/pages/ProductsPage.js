@@ -1,12 +1,10 @@
 // src/pages/ProductsPage.js
-import React, { useEffect, useState, useContext } from "react";
-import { Link } from "react-router-dom";
-import { CartContext } from "../context/CartContext";
+import React, { useEffect, useState } from "react";
 import "../css/ProductsPage.css";
-import { Button, Card, CardGrid } from "../components/ui";
+import { CardGrid } from "../components/ui";
+import ProductCard from "../components/ProductCard";
 
 const ProductsPage = () => {
-  const { addToCart } = useContext(CartContext);
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [search, setSearch] = useState("");
@@ -114,25 +112,7 @@ const ProductsPage = () => {
         ) : sorted.length > 0 ? (
           <CardGrid className="products-grid">
             {sorted.map((product) => (
-              <Card key={product._id} className="product-card">
-                <Link to={`/product/${product._id}`}>
-                  {product.imageUrl ? (
-                    <img
-                      src={product.imageUrl}
-                      alt={product.name}
-                      className="product-image"
-                    />
-                  ) : (
-                    <div className="no-image">Sin imagen</div>
-                  )}
-                  <h3>{product.name}</h3>
-                </Link>
-                <p>{product.description.substring(0, 50)}...</p>
-                <strong>${product.price}</strong>
-                <Button onClick={() => addToCart(product)}>
-                  Añadir al carrito
-                </Button>
-              </Card>
+              <ProductCard key={product._id} product={product} />
             ))}
           </CardGrid>
         ) : (
