@@ -49,7 +49,7 @@ export function saveOrderToExcel(order) {
   const orderId = order._id.toString();
   const userId = order.user ? order.user.toString() : "N/A";
   const productsStr = order.products
-    .map((p) => `(${p.product}, cant: ${p.quantity})`)
+    .map((p) => `(${p.product.name || p.product}, cant: ${p.quantity})`)
     .join(", ");
   const totalPrice = order.totalPrice;
   const status = order.status || "Pendiente";
@@ -116,8 +116,7 @@ export function exportOrdersToExcel(orders, filePath) {
   const data = orders.map((order) => {
     const productsStr = order.products
       .map(
-        (p) =>
-          `(${p.product._id || p.product}, cant: ${p.quantity})`
+        (p) => `(${p.product.name || p.product}, cant: ${p.quantity})`
       )
       .join(", ");
     return [
