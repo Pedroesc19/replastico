@@ -63,6 +63,15 @@ yarn build
 
 The compiled files will be generated in `frontend/build`.
 
+## Technical Documentation
+
+The project is split into two main directories:
+
+- `backend/` contains the Express server, controllers, models and services. Data flows from HTTP requests through controllers to MongoDB via Mongoose models, and services such as Excel export act on that data.
+- `frontend/` houses the React application. It interacts with the backend through REST calls to manage products, orders and quotations.
+
+Planned features include a payment workflow that leverages the new `paymentStatus` field and tooling for administrators to send quotes. An automatic quotation system computes delivery fees and totals so both customers and admins can review costs before payment integration is finalized.
+
 ## Additional notes
 
 Uploaded images are stored in the `backend/uploads/` folder and can be accessed through the `/uploads` route once the backend is running.

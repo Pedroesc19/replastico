@@ -31,6 +31,11 @@ export function saveOrderToExcel(order) {
         "ShippingAddress",
         "Phone",
         "Instructions",
+        "ContactName",
+        "Email",
+        "Company",
+        "DeliveryMethod",
+        "PaymentStatus",
       ],
     ]);
     XLSX.utils.book_append_sheet(workbook, worksheet, "Pedidos");
@@ -52,6 +57,11 @@ export function saveOrderToExcel(order) {
   const shippingAddress = order.shippingAddress || "";
   const phone = order.phone || "";
   const instructions = order.instructions || "";
+  const contactName = order.contactName || "";
+  const email = order.email || "";
+  const company = order.company || "";
+  const deliveryMethod = order.deliveryMethod || "";
+  const paymentStatus = order.paymentStatus || "";
 
   // Escribir las celdas
   const rowValues = [
@@ -64,6 +74,11 @@ export function saveOrderToExcel(order) {
     shippingAddress,
     phone,
     instructions,
+    contactName,
+    email,
+    company,
+    deliveryMethod,
+    paymentStatus,
   ];
   rowValues.forEach((val, colIndex) => {
     const cellAddress = XLSX.utils.encode_cell({ r: nextRow, c: colIndex });
@@ -92,6 +107,11 @@ export function exportOrdersToExcel(orders, filePath) {
     "ShippingAddress",
     "Phone",
     "Instructions",
+    "ContactName",
+    "Email",
+    "Company",
+    "DeliveryMethod",
+    "PaymentStatus",
   ];
   const data = orders.map((order) => {
     const productsStr = order.products
@@ -110,6 +130,11 @@ export function exportOrdersToExcel(orders, filePath) {
       order.shippingAddress || "",
       order.phone || "",
       order.instructions || "",
+      order.contactName || "",
+      order.email || "",
+      order.company || "",
+      order.deliveryMethod || "",
+      order.paymentStatus || "",
     ];
   });
   const worksheet = XLSX.utils.aoa_to_sheet([header, ...data]);

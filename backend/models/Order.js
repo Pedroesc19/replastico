@@ -13,6 +13,11 @@ const orderSchema = new mongoose.Schema({
   shippingAddress: { type: String, required: true }, // Dirección de envío
   phone: { type: String, required: true }, // Teléfono
   instructions: { type: String }, // Instrucciones adicionales
+  contactName: { type: String, required: true },
+  email: { type: String, required: true },
+  company: { type: String },
+  deliveryMethod: { type: String, default: "standard" },
+  paymentStatus: { type: String, default: "Pendiente" },
   status: { type: String, default: "Pendiente" },
   createdAt: { type: Date, default: Date.now },
 });
