@@ -430,8 +430,9 @@ const AdminDashboard = () => {
       ) : ordersError ? (
         <div className="error-message">{ordersError}</div>
       ) : (
-        <table className="orders-table">
-          <thead>
+        <div className="orders-table-wrapper">
+          <table className="orders-table">
+            <thead>
             <tr>
               <th
                 className={`sortable ${
@@ -541,6 +542,7 @@ const AdminDashboard = () => {
             </tr>
           </tbody>
         </table>
+      </div>
       )}
     </div>
   );

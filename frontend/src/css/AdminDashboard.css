@@ -68,9 +68,15 @@
   gap: var(--space-2);
 }
 
+.orders-table-wrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
 .orders-table {
   width: 100%;
   border-collapse: collapse;
+  min-width: 1000px;
 }
 
 .orders-table th,
@@ -123,10 +129,5 @@
   .pagination {
     flex-direction: column;
     align-items: stretch;
-  }
-
-  .orders-table {
-    display: block;
-    overflow-x: auto;
   }
 }
