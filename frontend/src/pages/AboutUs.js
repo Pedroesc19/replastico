@@ -4,6 +4,10 @@ import VisionSection from "../components/VisionSection";
 import ValuesSection from "../components/ValuesSection";
 import TeamCard from "../components/TeamCard";
 import teamMembers from "../data/teamMembers";
+import CompanyTimeline from "../components/CompanyTimeline";
+import ImpactStats from "../components/ImpactStats";
+import GalleryCarousel from "../components/GalleryCarousel";
+import JoinUs from "../components/JoinUs";
 import "../css/AboutUs.css";
 
 const AboutUs = () => {
@@ -52,6 +56,9 @@ const AboutUs = () => {
         <MissionSection />
         <VisionSection />
         <ValuesSection />
+        <CompanyTimeline />
+        <ImpactStats />
+        <GalleryCarousel />
         <section className="team-section fade-in-section">
           <h2 className="section-title">Nuestro Equipo</h2>
           <div className="team-grid">
@@ -60,6 +67,7 @@ const AboutUs = () => {
             ))}
           </div>
         </section>
+        <JoinUs />
       </div>
     </section>
   );
