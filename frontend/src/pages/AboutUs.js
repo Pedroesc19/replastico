@@ -11,6 +11,11 @@ import JoinUs from "../components/JoinUs";
 import "../css/AboutUs.css";
 
 const AboutUs = () => {
+  const banner = {
+    desktop: "https://via.placeholder.com/1200x400",
+    mobile: "https://via.placeholder.com/800x300"
+  };
+
   useEffect(() => {
     const sections = document.querySelectorAll(".fade-in-section");
     const observer = new IntersectionObserver(
@@ -30,17 +35,23 @@ const AboutUs = () => {
 
   return (
     <section className="about-container">
-      <header className="header-banner fade-in-section">
-        <picture>
-          <source
-            srcSet="https://via.placeholder.com/800x300"
-            media="(max-width: 600px)"
-          />
-          <img
-            src="https://via.placeholder.com/1200x400"
-            alt="Banner RePlastiCos"
-          />
-        </picture>
+      <header
+        className="header-banner fade-in-section"
+        style={!banner ? { backgroundColor: "var(--color-background-light)" } : undefined}
+      >
+        {banner && (
+          <picture>
+            {banner.mobile && (
+              <source
+                srcSet={banner.mobile}
+                media="(max-width: 600px)"
+              />
+            )}
+            {banner.desktop && (
+              <img src={banner.desktop} alt="Banner RePlastiCos" />
+            )}
+          </picture>
+        )}
         <div className="header-text">
           <h1 className="header-title">Sobre RePlastiCos</h1>
           <p className="header-subtitle">
