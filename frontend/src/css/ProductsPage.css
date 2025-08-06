@@ -138,3 +138,65 @@
   text-align: center;
   margin-top: var(--space-6);
 }
+.image-wrapper {
+  position: relative;
+}
+
+.product-badge {
+  position: absolute;
+  top: var(--space-2);
+  left: var(--space-2);
+  padding: var(--space-1) var(--space-2);
+  border-radius: 4px;
+  color: var(--color-surface);
+  font-size: var(--font-size-sm);
+}
+
+.badge-nuevo {
+  background-color: var(--color-primary);
+}
+
+.badge-oferta {
+  background-color: var(--color-warning);
+  color: var(--color-text);
+}
+
+.badge-agotado {
+  background-color: var(--color-danger);
+}
+
+.lazy {
+  opacity: 0;
+  transition: opacity var(--motion-slow) var(--motion-ease);
+}
+
+.lazy.loaded {
+  opacity: 1;
+}
+
+.product-rating {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  margin-bottom: var(--space-4);
+}
+
+.star-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--color-gray-700);
+}
+
+.star-icon.filled {
+  color: var(--color-warning);
+}
+
+.wishlist-btn {
+  margin-bottom: var(--space-3);
+}
+
+.product-link {
+  text-decoration: none;
+  color: inherit;
+}
+
