@@ -10,6 +10,8 @@ const AdminDashboard = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [statusFilter, setStatusFilter] = useState("");
+  const [deliveryMethodFilter, setDeliveryMethodFilter] = useState("");
+  const [paymentStatusFilter, setPaymentStatusFilter] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
@@ -32,6 +34,12 @@ const AdminDashboard = () => {
     if (statusFilter) {
       params.append("status", statusFilter);
     }
+    if (deliveryMethodFilter) {
+      params.append("deliveryMethod", deliveryMethodFilter);
+    }
+    if (paymentStatusFilter) {
+      params.append("paymentStatus", paymentStatusFilter);
+    }
     if (startDate) {
       params.append("startDate", startDate);
     }
@@ -52,7 +60,10 @@ const AdminDashboard = () => {
           fetched = fetched.filter(
             (o) =>
               o._id.toLowerCase().includes(lowered) ||
-              (o.user && o.user.toLowerCase().includes(lowered))
+              (o.user && o.user.toLowerCase().includes(lowered)) ||
+              (o.contactName && o.contactName.toLowerCase().includes(lowered)) ||
+              (o.email && o.email.toLowerCase().includes(lowered)) ||
+              (o.company && o.company.toLowerCase().includes(lowered))
           );
         }
         setOrders(fetched);
@@ -68,6 +79,8 @@ const AdminDashboard = () => {
     token,
     currentPage,
     statusFilter,
+    deliveryMethodFilter,
+    paymentStatusFilter,
     startDate,
     endDate,
     pageSize,
@@ -88,6 +101,12 @@ const AdminDashboard = () => {
     if (statusFilter) {
       params.append("status", statusFilter);
     }
+    if (deliveryMethodFilter) {
+      params.append("deliveryMethod", deliveryMethodFilter);
+    }
+    if (paymentStatusFilter) {
+      params.append("paymentStatus", paymentStatusFilter);
+    }
     if (startDate) {
       params.append("startDate", startDate);
     }
@@ -105,8 +124,13 @@ const AdminDashboard = () => {
     const headers = [
       "ID Orden",
       "Usuario",
+      "Nombre",
+      "Email",
+      "Compañía",
       "Total",
       "Estado",
+      "Estado de Pago",
+      "Método de Entrega",
       "Dirección de Envío",
       "Teléfono",
       "Instrucciones",
@@ -115,8 +139,13 @@ const AdminDashboard = () => {
     const rows = sortedOrders.map((o) => [
       o._id,
       o.user || "N/A",
+      o.contactName,
+      o.email,
+      o.company,
       o.totalPrice,
       o.status,
+      o.paymentStatus,
+      o.deliveryMethod,
       o.shippingAddress,
       o.phone,
       o.instructions,
@@ -125,7 +154,12 @@ const AdminDashboard = () => {
     const summaryRow = [
       "Totales",
       "",
+      "",
+      "",
+      "",
       totals.totalSales,
+      "",
+      "",
       "",
       "",
       "",
@@ -174,6 +208,59 @@ const AdminDashboard = () => {
         setOrders(previous);
         alert("Error actualizando el estado");
       });
+  };
+
+  const handlePaymentStatusChange = (id, newStatus) => {
+    const previous = [...orders];
+    setOrders((curr) =>
+      curr.map((o) => (o._id === id ? { ...o, paymentStatus: newStatus } : o))
+    );
+    fetch(`http://localhost:5000/api/orders/${id}/payment`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ paymentStatus: newStatus }),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Error actualizando estado de pago");
+        }
+        return res.json();
+      })
+      .then(() => {
+        alert("Estado de pago actualizado");
+      })
+      .catch((err) => {
+        console.error("Error updating payment status:", err);
+        setOrders(previous);
+        alert("Error actualizando estado de pago");
+      });
+  };
+
+  const handleSendQuote = async (order) => {
+    try {
+      const payload = {
+        products: order.products.map((p) => ({
+          product: p.product._id || p.product,
+          quantity: p.quantity,
+        })),
+        deliveryMethod: order.deliveryMethod,
+      };
+      const res = await fetch("http://localhost:5000/api/orders/quote", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      alert(
+        `Subtotal: $${data.subtotal}\nEnvío: $${data.deliveryFee}\nTotal: $${data.total}`
+      );
+    } catch (err) {
+      console.error("Error fetching quote:", err);
+      alert("Error generando cotización");
+    }
   };
 
   const handleSort = (key) => {
@@ -286,6 +373,28 @@ const AdminDashboard = () => {
             <option value="Pendiente">Pendiente</option>
             <option value="Completado">Completado</option>
           </select>
+          <select
+            value={deliveryMethodFilter}
+            onChange={(e) => {
+              setDeliveryMethodFilter(e.target.value);
+              setCurrentPage(1);
+            }}
+          >
+            <option value="">Entrega</option>
+            <option value="standard">Standard</option>
+            <option value="express">Express</option>
+          </select>
+          <select
+            value={paymentStatusFilter}
+            onChange={(e) => {
+              setPaymentStatusFilter(e.target.value);
+              setCurrentPage(1);
+            }}
+          >
+            <option value="">Pago</option>
+            <option value="Pendiente">Pendiente</option>
+            <option value="Pagado">Pagado</option>
+          </select>
         </div>
         <div className="pagination">
           <select
@@ -340,6 +449,9 @@ const AdminDashboard = () => {
               >
                 Usuario
               </th>
+              <th>Contacto</th>
+              <th>Email</th>
+              <th>Compañía</th>
               <th
                 className={`sortable ${
                   sortConfig.key === "totalPrice" ? sortConfig.direction : ""
@@ -356,6 +468,15 @@ const AdminDashboard = () => {
               >
                 Estado
               </th>
+              <th
+                className={`sortable ${
+                  sortConfig.key === "paymentStatus" ? sortConfig.direction : ""
+                }`}
+                onClick={() => handleSort("paymentStatus")}
+              >
+                Pago
+              </th>
+              <th>Método de Entrega</th>
               <th>Dirección de Envío</th>
               <th>Teléfono</th>
               <th>Instrucciones</th>
@@ -367,6 +488,7 @@ const AdminDashboard = () => {
               >
                 Fecha
               </th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -374,6 +496,9 @@ const AdminDashboard = () => {
               <tr key={order._id}>
                 <td>{order._id}</td>
                 <td>{order.user || "N/A"}</td>
+                <td>{order.contactName}</td>
+                <td>{order.email}</td>
+                <td>{order.company}</td>
                 <td>${order.totalPrice}</td>
                 <td>
                   <select
@@ -386,16 +511,33 @@ const AdminDashboard = () => {
                     <option value="Completado">Completado</option>
                   </select>
                 </td>
+                <td>
+                  <select
+                    value={order.paymentStatus}
+                    onChange={(e) =>
+                      handlePaymentStatusChange(order._id, e.target.value)
+                    }
+                  >
+                    <option value="Pendiente">Pendiente</option>
+                    <option value="Pagado">Pagado</option>
+                  </select>
+                </td>
+                <td>{order.deliveryMethod}</td>
                 <td>{order.shippingAddress}</td>
                 <td>{order.phone}</td>
                 <td>{order.instructions}</td>
                 <td>{new Date(order.createdAt).toLocaleString()}</td>
+                <td>
+                  <Button onClick={() => handleSendQuote(order)}>
+                    Enviar Cotización
+                  </Button>
+                </td>
               </tr>
             ))}
             <tr className="summary-row">
-              <td colSpan={2}>Totales</td>
+              <td colSpan={5}>Totales</td>
               <td>${totals.totalSales}</td>
-              <td colSpan={5}>Pedidos: {totals.count}</td>
+              <td colSpan={8}>Pedidos: {totals.count}</td>
             </tr>
           </tbody>
         </table>

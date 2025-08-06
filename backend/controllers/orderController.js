@@ -2,14 +2,23 @@
 import Order from "../models/Order.js";
 import Product from "../models/Product.js";
 import path from "path";
-import fs from "fs";
 import { saveOrderToExcel, exportOrdersToExcel } from "../services/excelService.js";
 
 // Crea un pedido incluyendo información adicional (checkout)
 export const createOrder = async (req, res) => {
   try {
     // Extrae de la solicitud el array de productos y los datos adicionales del checkout
-    const { products, shippingAddress, phone, instructions } = req.body;
+    const {
+      products,
+      shippingAddress,
+      phone,
+      instructions,
+      name,
+      email,
+      company,
+      deliveryMethod,
+      paymentStatus,
+    } = req.body;
 
     // Recupera la información detallada de cada producto y calcula el total
     const detailedProducts = await Promise.all(
@@ -43,6 +52,11 @@ export const createOrder = async (req, res) => {
       shippingAddress,
       phone,
       instructions,
+      contactName: name,
+      email,
+      company,
+      deliveryMethod,
+      paymentStatus: paymentStatus || "Pendiente",
       status: "Pendiente",
     });
 
@@ -65,12 +79,20 @@ export const getOrders = async (req, res) => {
       status,
       startDate,
       endDate,
+      deliveryMethod,
+      paymentStatus,
     } = req.query;
 
     const query = {};
 
     if (status) {
       query.status = status;
+    }
+    if (deliveryMethod) {
+      query.deliveryMethod = deliveryMethod;
+    }
+    if (paymentStatus) {
+      query.paymentStatus = paymentStatus;
     }
 
     if (startDate || endDate) {
@@ -123,13 +145,69 @@ export const updateOrderStatus = async (req, res) => {
   }
 };
 
+// Actualiza el estado de pago de un pedido
+export const updatePaymentStatus = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { paymentStatus } = req.body;
+    const order = await Order.findByIdAndUpdate(
+      id,
+      { paymentStatus },
+      { new: true }
+    );
+    if (!order) {
+      return res.status(404).json({ message: "Pedido no encontrado" });
+    }
+    return res.json(order);
+  } catch (error) {
+    return res.status(500).json({
+      message: "Error al actualizar el estado de pago",
+      error: error.message,
+    });
+  }
+};
+
+// Calcula una cotización para los productos
+export const quoteOrder = async (req, res) => {
+  try {
+    const { products, deliveryMethod } = req.body;
+    const detailed = await Promise.all(
+      products.map(async (item) => {
+        const product = await Product.findById(item.product);
+        if (!product) throw new Error("Producto no encontrado");
+        return { product, quantity: item.quantity };
+      })
+    );
+    const subtotal = detailed.reduce(
+      (sum, item) => sum + item.product.price * item.quantity,
+      0
+    );
+    const deliveryFee =
+      deliveryMethod === "express" ? subtotal * 0.2 : subtotal * 0.1;
+    const total = subtotal + deliveryFee;
+    res.json({ subtotal, deliveryFee, total });
+  } catch (error) {
+    res.status(500).json({
+      message: "Error al calcular la cotización",
+      error: error.message,
+    });
+  }
+};
+
 // Función para descargar el archivo Excel de pedidos
 export const downloadOrdersExcel = async (req, res) => {
   try {
-    const { status, startDate, endDate } = req.query;
+    const { status, startDate, endDate, deliveryMethod, paymentStatus } =
+      req.query;
     const query = {};
     if (status) {
       query.status = status;
+    }
+    if (deliveryMethod) {
+      query.deliveryMethod = deliveryMethod;
+    }
+    if (paymentStatus) {
+      query.paymentStatus = paymentStatus;
     }
     if (startDate || endDate) {
       query.createdAt = {};
