@@ -1,7 +1,7 @@
 // backend/server.js
+import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import productRoutes from "./routes/productRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
@@ -9,6 +9,8 @@ import orderRoutes from "./routes/orderRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
 import quoteRoutes from "./routes/quoteRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
+import checkoutRoutes from "./routes/checkoutRoutes.js";
+import webhookRouter from "./webhooks/stripe.js";
 import fs from "fs";
 import path from "path";
 
@@ -17,12 +19,12 @@ if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir, { recursive: true });
 }
 
-dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 connectDB();
-app.use(cors());
+app.use(cors({ origin: process.env.CLIENT_URL }));
+app.use("/webhook", express.raw({ type: "application/json" }), webhookRouter);
 app.use(express.json());
 
 // Usar rutas de producto
@@ -32,6 +34,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/quotes", quoteRoutes);
 app.use("/api/admin", adminRoutes);
+app.use("/api/checkout", checkoutRoutes);
 app.use("/uploads", express.static("uploads"));
 
 app.get("/", (req, res) => {
