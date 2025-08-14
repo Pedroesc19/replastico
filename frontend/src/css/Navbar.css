@@ -31,8 +31,8 @@
 }
 
 .logo {
-  width: 32px;
   height: 32px;
+  width: auto;
 }
 
 .navbar-menu {
