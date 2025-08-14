@@ -20,6 +20,12 @@
   padding: 0 var(--space-5);
 }
 
+.navbar-brand-container {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
 .navbar-brand {
   display: flex;
   align-items: center;
@@ -35,14 +41,26 @@
   width: auto;
 }
 
+
 .navbar-menu {
   flex: 1;
-}
-
-.navbar-links {
   display: flex;
   align-items: center;
-  width: 100%;
+  justify-content: space-between;
+}
+
+.navbar-primary-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar-utilities-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-left: var(--space-6);
+  padding-left: var(--space-6);
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .navbar-primary,
@@ -55,11 +73,7 @@
   padding: 0;
 }
 
-.navbar-utilities {
-  margin-left: auto;
-}
-
-.navbar-links a {
+.navbar-menu a {
   color: var(--color-surface);
   text-decoration: none;
   font-size: var(--font-size-md);
@@ -71,12 +85,12 @@
 }
 
 
-.navbar-links a:hover,
-.navbar-links a.active {
+.navbar-menu a:hover,
+.navbar-menu a.active {
   color: var(--color-primary);
 }
 
-.navbar-links a.active::after {
+.navbar-menu a.active::after {
   content: "";
   position: absolute;
   left: 0;
@@ -95,7 +109,7 @@
 }
 
 .navbar-cta:hover {
-  background-color: var(--color-primary-dark);
+  background-color: var(--color-primary);
 }
 
 .navbar-toggle {
@@ -106,7 +120,7 @@
   cursor: pointer;
 }
 
-.navbar-links a:focus-visible,
+.navbar-menu a:focus-visible,
 .navbar-toggle:focus-visible,
 .logout-button:focus-visible,
 .navbar-cta:focus-visible {
@@ -119,14 +133,22 @@
     display: block;
   }
 
-  .navbar-links {
+  .navbar-menu {
     display: none;
     flex-direction: column;
     width: 100%;
   }
 
-  .navbar-links.open {
+  .navbar-menu.open {
     display: flex;
+  }
+
+  .navbar-primary-container,
+  .navbar-utilities-container {
+    justify-content: flex-start;
+    padding-left: 0;
+    margin-left: 0;
+    border: none;
   }
 
   .navbar-primary,
@@ -134,10 +156,6 @@
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-4);
-  }
-
-  .navbar-utilities {
-    margin-left: 0;
   }
 }
 
@@ -181,7 +199,9 @@
 }
 
 .logout-button:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-surface);
 }
 
 .sr-only {

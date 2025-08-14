@@ -82,27 +82,29 @@ const Navbar = ({
   return (
     <header className="navbar" ref={navRef}>
       <div className="navbar-container">
-        <Link className="navbar-brand" to="/" onClick={handleLinkClick}>
-          <img src={logo} alt="RePlastiCos logo" className="logo" />
-        </Link>
-        <button
-          ref={toggleRef}
-          className="navbar-toggle"
-          aria-label="Toggle navigation"
-          aria-controls={menuId}
-          aria-expanded={menuOpen}
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          <span aria-hidden="true">
-            <Bars3Icon width={24} height={24} />
-          </span>
-        </button>
-        <nav className="navbar-menu">
-          <div
-            id={menuId}
-            ref={menuRef}
-            className={`navbar-links ${menuOpen ? "open" : ""}`}
+        <div className="navbar-brand-container">
+          <Link className="navbar-brand" to="/" onClick={handleLinkClick}>
+            <img src={logo} alt="RePlastiCos logo" className="logo" />
+          </Link>
+          <button
+            ref={toggleRef}
+            className="navbar-toggle"
+            aria-label="Toggle navigation"
+            aria-controls={menuId}
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen(!menuOpen)}
           >
+            <span aria-hidden="true">
+              <Bars3Icon width={24} height={24} />
+            </span>
+          </button>
+        </div>
+        <nav
+          id={menuId}
+          ref={menuRef}
+          className={`navbar-menu ${menuOpen ? "open" : ""}`}
+        >
+          <div className="navbar-primary-container">
             <ul className="navbar-primary">
               {primaryItems.map((item, index) => (
                 <li key={item.to}>
@@ -117,6 +119,8 @@ const Navbar = ({
                 </li>
               ))}
             </ul>
+          </div>
+          <div className="navbar-utilities-container">
             <ul className="navbar-utilities">
               {utilityItems.map((item) => (
                 <li key={item.to}>
