@@ -109,6 +109,9 @@ const CheckoutForm = () => {
   const validateStep = () => {
     const newErrors = {};
     if (step === 1) {
+      if (!formData.name) {
+        newErrors.name = "Nombre requerido";
+      }
       if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(formData.email)) {
         newErrors.email = "Email inválido";
       }
@@ -116,8 +119,13 @@ const CheckoutForm = () => {
         newErrors.phone = "Teléfono inválido";
       }
     }
-    if (step === 2 && !formData.shippingAddress) {
-      newErrors.shippingAddress = "Dirección requerida";
+    if (step === 2) {
+      if (!formData.shippingAddress) {
+        newErrors.shippingAddress = "Dirección requerida";
+      }
+      if (!formData.paymentMethod) {
+        newErrors.paymentMethod = "Método de pago requerido";
+      }
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -171,6 +179,40 @@ const CheckoutForm = () => {
         console.error("Error en el checkout:", err);
         setErrors({ general: "Ocurrió un error al procesar el pedido." });
       });
+  };
+
+  const handleDownloadQuote = async () => {
+    if (!formData.shippingAddress || !formData.paymentMethod) {
+      setErrors({
+        general: "Completa los datos antes de descargar la cotización.",
+      });
+      return;
+    }
+    try {
+      const payload = {
+        ...formData,
+        products: cartItems.map((item) => ({
+          product: item.product._id,
+          quantity: item.quantity,
+        })),
+      };
+      const res = await fetch("http://localhost:5000/api/quotes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "cotizacion.pdf";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error("Error downloading quote:", err);
+    }
   };
 
   const totalPrice = cartItems.reduce(
@@ -299,6 +341,9 @@ const CheckoutForm = () => {
                 <option value="credit">Tarjeta de crédito</option>
                 <option value="bank">Transferencia bancaria</option>
               </select>
+              {errors.paymentMethod && (
+                <div className="error">{errors.paymentMethod}</div>
+              )}
             </div>
             <div className="form-group">
               <label htmlFor="instructions">
@@ -350,6 +395,9 @@ const CheckoutForm = () => {
             <div className="form-actions">
               <Button type="button" onClick={prevStep}>
                 Atrás
+              </Button>
+              <Button type="button" onClick={handleDownloadQuote}>
+                Descargar cotización
               </Button>
               <CheckoutButton label="Confirmar Pedido" />
             </div>
