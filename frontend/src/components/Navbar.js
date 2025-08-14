@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Link, NavLink } from "react-router-dom";
 import "../css/Navbar.css";
 import { Bars3Icon } from "@heroicons/react/24/solid";
+import logo from "../logo.svg";
 
 const Navbar = ({
   primaryItems,
@@ -82,8 +83,7 @@ const Navbar = ({
     <header className="navbar" ref={navRef}>
       <div className="navbar-container">
         <Link className="navbar-brand" to="/" onClick={handleLinkClick}>
-          <img src="/logo.svg" alt="RePlastiCos" className="logo" />
-          <span className="brand-text">RePlastiCos</span>
+          <img src={logo} alt="RePlastiCos logo" className="logo" />
         </Link>
         <button
           ref={toggleRef}
