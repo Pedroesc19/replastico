@@ -1,10 +1,9 @@
 @import "../design/tokens.css";
 
-
 .navbar {
-  background: linear-gradient(90deg, var(--color-success), var(--color-success-dark));
-  border-bottom: 1px solid var(--color-border);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  background-color: var(--color-text);
+  border-bottom: 1px solid #2B2B2B;
+  box-shadow: none;
   font-family: var(--font-family-base);
   position: sticky;
   top: 0;
@@ -16,8 +15,9 @@
   align-items: center;
   justify-content: space-between;
   max-width: 1200px;
+  height: 64px;
   margin: 0 auto;
-  padding: var(--space-3) var(--space-5);
+  padding: 0 var(--space-5);
 }
 
 .navbar-brand {
@@ -35,45 +35,68 @@
   height: 32px;
 }
 
+.navbar-menu {
+  flex: 1;
+}
+
 .navbar-links {
   display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.navbar-primary,
+.navbar-utilities {
+  display: flex;
+  align-items: center;
   gap: var(--space-5);
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.navbar-links li a {
+.navbar-utilities {
+  margin-left: auto;
+}
+
+.navbar-links a {
   color: var(--color-surface);
   text-decoration: none;
   font-size: var(--font-size-md);
   padding: var(--space-2) var(--space-1);
   position: relative;
-  transition: color 0.2s ease;
+  transition: color var(--motion-fast) var(--motion-ease);
+  display: flex;
+  align-items: center;
 }
 
-.navbar-links li a:focus-visible {
-  outline: 3px solid var(--color-focus-outline);
-  outline-offset: 2px;
+.navbar-links a:hover,
+.navbar-links a.active {
+  color: var(--color-secondary);
 }
 
-.navbar-links li a:hover,
-.navbar-links li a.active {
-  color: var(--color-background-lighter);
-}
-
-.navbar-links li a.active::after {
+.navbar-links a.active::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -6px;
+  bottom: -4px;
   width: 100%;
   height: 2px;
-  background-color: var(--color-background-lighter);
+  background-color: var(--color-secondary);
   border-radius: 4px;
 }
 
-/* Responsive (optional mobile nav later) */
+.navbar-cta {
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+  padding: var(--space-2) var(--space-4);
+  border-radius: 4px;
+}
+
+.navbar-cta:hover {
+  background-color: var(--color-primary-dark);
+}
+
 .navbar-toggle {
   display: none;
   background: none;
@@ -82,7 +105,10 @@
   cursor: pointer;
 }
 
-.navbar-toggle:focus-visible {
+.navbar-links a:focus-visible,
+.navbar-toggle:focus-visible,
+.logout-button:focus-visible,
+.navbar-cta:focus-visible {
   outline: 3px solid var(--color-focus-outline);
   outline-offset: 2px;
 }
@@ -101,6 +127,17 @@
   .navbar-links.open {
     display: flex;
   }
+
+  .navbar-primary,
+  .navbar-utilities {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+
+  .navbar-utilities {
+    margin-left: 0;
+  }
 }
 
 .cart-link-content {
@@ -108,7 +145,7 @@
   align-items: center;
   gap: var(--space-2);
   position: relative;
-  padding-top: 2px; /* adjust if needed */
+  padding-top: 2px;
 }
 
 .cart-icon {
@@ -122,7 +159,7 @@
 .cart-badge {
   position: absolute;
   top: -6px;
-  right: -10px; /* was 'left: 12px' */
+  right: -10px;
   background-color: var(--color-danger);
   color: var(--color-surface);
   border-radius: 50%;
@@ -130,10 +167,6 @@
   font-size: var(--space-3);
   font-weight: bold;
   z-index: 10;
-}
-.navbar-links li a {
-  display: flex;
-  align-items: center;
 }
 
 .logout-button {
@@ -143,7 +176,7 @@
   padding: var(--space-1) var(--space-3);
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: background-color var(--motion-fast) var(--motion-ease);
 }
 
 .logout-button:hover {

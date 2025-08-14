@@ -13,7 +13,7 @@ const UserNavbar = ({ onLogout }) => {
     navigate("/");
   };
 
-  const menuItems = [
+  const primaryItems = [
     { to: "/", label: "Inicio", end: true },
     { to: "/about", label: "Nosotros" },
     { to: "/products", label: "Tienda" },
@@ -22,7 +22,8 @@ const UserNavbar = ({ onLogout }) => {
 
   return (
     <Navbar
-      menuItems={menuItems}
+      primaryItems={primaryItems}
+      utilityItems={[]}
       showCart
       cartCount={cartItems.length}
       onLogout={handleLogout}

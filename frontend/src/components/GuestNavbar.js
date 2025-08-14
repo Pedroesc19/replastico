@@ -6,18 +6,22 @@ import { CartContext } from "../context/CartContext";
 const GuestNavbar = () => {
   const { cartItems } = useContext(CartContext);
 
-  const menuItems = [
+  const primaryItems = [
     { to: "/", label: "Inicio", end: true },
     { to: "/about", label: "Nosotros" },
     { to: "/products", label: "Tienda" },
     { to: "/contact", label: "Contacto" },
+  ];
+
+  const utilityItems = [
     { to: "/login", label: "Login" },
-    { to: "/register", label: "Registro" },
+    { to: "/register", label: "Registro", cta: true },
   ];
 
   return (
     <Navbar
-      menuItems={menuItems}
+      primaryItems={primaryItems}
+      utilityItems={utilityItems}
       showCart
       cartCount={cartItems.length}
     />
