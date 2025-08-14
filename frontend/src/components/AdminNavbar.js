@@ -11,12 +11,18 @@ const AdminNavbar = ({ onLogout }) => {
     navigate("/");
   };
 
-  const menuItems = [
+  const primaryItems = [
     { to: "/manage-products", label: "Administrar Productos" },
     { to: "/admin", label: "Dashboard" },
   ];
 
-  return <Navbar menuItems={menuItems} onLogout={handleLogout} />;
+  return (
+    <Navbar
+      primaryItems={primaryItems}
+      utilityItems={[]}
+      onLogout={handleLogout}
+    />
+  );
 };
 
 AdminNavbar.propTypes = {

@@ -4,7 +4,13 @@ import { Link, NavLink } from "react-router-dom";
 import "../css/Navbar.css";
 import { Bars3Icon } from "@heroicons/react/24/solid";
 
-const Navbar = ({ menuItems, showCart = false, cartCount = 0, onLogout }) => {
+const Navbar = ({
+  primaryItems,
+  utilityItems = [],
+  showCart = false,
+  cartCount = 0,
+  onLogout,
+}) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuId = useId();
   const navRef = useRef(null);
@@ -92,50 +98,65 @@ const Navbar = ({ menuItems, showCart = false, cartCount = 0, onLogout }) => {
           </span>
         </button>
         <nav className="navbar-menu">
-          <ul
+          <div
             id={menuId}
             ref={menuRef}
             className={`navbar-links ${menuOpen ? "open" : ""}`}
           >
-            {menuItems.map((item, index) => (
-              <li key={item.to}>
-                <NavLink
-                  to={item.to}
-                  end={item.end}
-                  onClick={handleLinkClick}
-                  ref={index === 0 ? firstItemRef : null}
-                >
-                  {item.label}
-                </NavLink>
-              </li>
-            ))}
-            {showCart && (
-              <li>
-                <NavLink
-                  to="/cart"
-                  onClick={handleLinkClick}
-                  aria-label={cartLabel}
-                >
-                  <span className="cart-link-content">
-                    Carrito
-                    {cartCount > 0 && (
-                      <span className="cart-badge">{cartCount}</span>
-                    )}
-                    <span className="sr-only" aria-live="polite">
-                      {`Cart, ${cartCount} item${cartCount === 1 ? "" : "s"}`}
+            <ul className="navbar-primary">
+              {primaryItems.map((item, index) => (
+                <li key={item.to}>
+                  <NavLink
+                    to={item.to}
+                    end={item.end}
+                    onClick={handleLinkClick}
+                    ref={index === 0 ? firstItemRef : null}
+                  >
+                    {item.label}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+            <ul className="navbar-utilities">
+              {utilityItems.map((item) => (
+                <li key={item.to}>
+                  <NavLink
+                    to={item.to}
+                    onClick={handleLinkClick}
+                    className={item.cta ? "navbar-cta" : undefined}
+                  >
+                    {item.label}
+                  </NavLink>
+                </li>
+              ))}
+              {showCart && (
+                <li>
+                  <NavLink
+                    to="/cart"
+                    onClick={handleLinkClick}
+                    aria-label={cartLabel}
+                  >
+                    <span className="cart-link-content">
+                      Carrito
+                      {cartCount > 0 && (
+                        <span className="cart-badge">{cartCount}</span>
+                      )}
+                      <span className="sr-only" aria-live="polite">
+                        {`Cart, ${cartCount} item${cartCount === 1 ? "" : "s"}`}
+                      </span>
                     </span>
-                  </span>
-                </NavLink>
-              </li>
-            )}
-            {onLogout && (
-              <li>
-                <button onClick={handleLogout} className="logout-button">
-                  Logout
-                </button>
-              </li>
-            )}
-          </ul>
+                  </NavLink>
+                </li>
+              )}
+              {onLogout && (
+                <li>
+                  <button onClick={handleLogout} className="logout-button">
+                    Logout
+                  </button>
+                </li>
+              )}
+            </ul>
+          </div>
         </nav>
       </div>
     </header>
@@ -143,13 +164,20 @@ const Navbar = ({ menuItems, showCart = false, cartCount = 0, onLogout }) => {
 };
 
 Navbar.propTypes = {
-  menuItems: PropTypes.arrayOf(
+  primaryItems: PropTypes.arrayOf(
     PropTypes.shape({
       to: PropTypes.string.isRequired,
       label: PropTypes.string.isRequired,
       end: PropTypes.bool,
     })
   ).isRequired,
+  utilityItems: PropTypes.arrayOf(
+    PropTypes.shape({
+      to: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+      cta: PropTypes.bool,
+    })
+  ),
   showCart: PropTypes.bool,
   cartCount: PropTypes.number,
   onLogout: PropTypes.func,
