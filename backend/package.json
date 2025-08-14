@@ -4,6 +4,10 @@
   "main": "server.js",
   "type": "module",
   "license": "MIT",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
   "dependencies": {
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
@@ -12,7 +16,11 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.12.0",
     "multer": "^1.4.5-lts.2",
-    "xlsx": "^0.18.5",
-    "pdfkit": "^0.17.1"
+    "pdfkit": "^0.17.1",
+    "stripe": "^16.0.0",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
   }
 }
