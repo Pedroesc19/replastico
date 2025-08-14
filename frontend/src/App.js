@@ -13,6 +13,8 @@ import CartPage from "./pages/CartPage";
 import CheckoutForm from "./pages/CheckoutForm"; // si existe
 import ProductDetails from "./pages/ProductDetails"; // si existe
 import ConfirmationPage from "./pages/ConfirmationPage";
+import Success from "./pages/Success";
+import Cancel from "./pages/Cancel";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Layout from "./components/Layout";
 import PageTransition from "./components/PageTransition";
@@ -57,6 +59,8 @@ function App() {
               }
             />
             <Route path="/confirmation" element={<ConfirmationPage />} />
+            <Route path="/success" element={<Success />} />
+            <Route path="/cancel" element={<Cancel />} />
             {/* Agregar otras rutas protegidas según sea necesario */}
           </Routes>
         </PageTransition>

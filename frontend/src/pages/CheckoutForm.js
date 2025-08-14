@@ -4,6 +4,7 @@ import { CartContext } from "../context/CartContext";
 import { AuthContext } from "../context/AuthContext";
 import "../css/CheckoutForm.css";
 import { Button, Card, Form, TextInput } from "../components/ui";
+import CheckoutButton from "../components/CheckoutButton";
 
 const CheckoutForm = () => {
   const { cartItems, clearCart } = useContext(CartContext);
@@ -350,9 +351,7 @@ const CheckoutForm = () => {
               <Button type="button" onClick={prevStep}>
                 Atrás
               </Button>
-              <Button type="submit" className="submit-button">
-                Confirmar Pedido
-              </Button>
+              <CheckoutButton label="Confirmar Pedido" />
             </div>
           </>
         )}
