@@ -8,11 +8,13 @@ Tokens centralize colors, spacing, typography, and motion values. They are defin
 
 ### Colors
 - `--color-primary` `#28a745`
-- `--color-secondary` `#007bff`
+- `--color-secondary` `#6c757d` (neutral)
 - `--color-danger` `#dc3545`
 - `--color-surface` `#ffffff`
 - `--color-background` `#f2f2f2`
 - `--color-text` `#333333`
+
+Green (`--color-primary`) serves as the sole accent color. The secondary token is a neutral gray used for subdued UI elements.
 
 ### Spacing Scale
 `0.25rem`, `0.5rem`, `0.75rem`, `1rem`, `1.5rem`, `2rem`
@@ -26,7 +28,7 @@ Durations of `150ms`, `250ms`, `400ms` with easing `cubic-bezier(0.4, 0, 0.2, 1)
 ## Component Library
 
 Reusable components live in [`src/components/ui/`](src/components/ui/):
-- **Button** – supports `primary`, `secondary`, and `danger` variants, focus outlines, and hover states.
+- **Button** – supports `primary` and `danger` variants; `secondary` maps to a neutral style.
 - **Card** – surface container with shadow and radius.
 - **Modal** – accessible dialog with overlay, close button, and fade-in animation.
 - **TextInput** – form field with label and focus style.

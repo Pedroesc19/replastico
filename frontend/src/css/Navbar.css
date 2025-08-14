@@ -70,9 +70,10 @@
   align-items: center;
 }
 
+
 .navbar-links a:hover,
 .navbar-links a.active {
-  color: var(--color-secondary);
+  color: var(--color-primary);
 }
 
 .navbar-links a.active::after {
@@ -82,7 +83,7 @@
   bottom: -4px;
   width: 100%;
   height: 2px;
-  background-color: var(--color-secondary);
+  background-color: var(--color-primary);
   border-radius: 4px;
 }
 
