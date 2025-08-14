@@ -28,8 +28,9 @@
 
 .navbar-brand {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: var(--space-2);
+  padding: var(--space-2);
   text-decoration: none;
   color: var(--color-surface);
   font-weight: bold;
@@ -39,6 +40,7 @@
 .logo {
   height: 32px;
   width: auto;
+  display: block;
 }
 
 
@@ -77,7 +79,7 @@
   color: var(--color-surface);
   text-decoration: none;
   font-size: var(--font-size-md);
-  padding: var(--space-2) var(--space-1);
+  padding: var(--space-2);
   position: relative;
   transition: color var(--motion-fast) var(--motion-ease);
   display: flex;
