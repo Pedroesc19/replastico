@@ -5,15 +5,15 @@ const router = express.Router();
 
 router.post("/session", async (req, res) => {
   try {
-    // TODO: validate and price items using your own data
-    const lineItems = [{
+    const { order } = req.body;
+    const lineItems = order.items.map((item) => ({
       price_data: {
-        currency: "usd",
-        product_data: { name: "Awesome Product" },
-        unit_amount: 2000,
+        currency: "mxn",
+        product_data: { name: item.name },
+        unit_amount: item.price * 100,
       },
-      quantity: 1,
-    }];
+      quantity: item.quantity,
+    }));
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
